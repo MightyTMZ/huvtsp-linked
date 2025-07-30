@@ -1,7 +1,14 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  async rewrites() {
+    return [
+      {
+        source: '/api/django/:path*',
+        destination: 'http://localhost:8000/api/:path*', // Django backend
+      },
+    ];
+  },
 };
 
 export default nextConfig;
