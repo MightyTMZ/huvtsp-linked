@@ -41,6 +41,8 @@ class Organization(models.Model):
     ORGANIZATION_TYPE_ACCELERATOR = "AC"
     ORGANIZATION_TYPE_NONPROFIT = "NP"
     ORGANIZATION_TYPE_UNIVERSITY = "UN"
+    ORGANIZATION_TYPE_OTHER = "UN"
+
     # ... add more types as needed
 
     ORGANIZATION_TYPES = [
@@ -50,6 +52,7 @@ class Organization(models.Model):
         (ORGANIZATION_TYPE_ACCELERATOR, "Accelerator/Incubator"),
         (ORGANIZATION_TYPE_NONPROFIT, "Non-Profit Organization"),
         (ORGANIZATION_TYPE_UNIVERSITY, "University/Academic Institution"),
+        (ORGANIZATION_TYPE_OTHER, "Other"),
     ]
 
     name = models.CharField(max_length=255, unique=True, help_text="Official name of the organization (e.g., FinTech Nexus, Google, Y Combinator)")
@@ -65,12 +68,47 @@ class Organization(models.Model):
         ordering = ['name']
 
 
-class Experience(models.Model):    
+class Experience(models.Model):  
+    EXPERIENCE_TYPE_EMPLOYMENT = "EM"
+    EXPERIENCE_TYPE_INTERNSHIP = "IN"
+    EXPERIENCE_TYPE_VOLUNTEER = "VO"
+    EXPERIENCE_TYPE_ACADEMIC = "AC" # e.g., research assistant, teaching assistant
+    EXPERIENCE_TYPE_FREELANCE = "FR"
+    EXPERIENCE_TYPE_BOARD_MEMBER = "BM"
+    EXPERIENCE_TYPE_MENTOR = "ME"
+    EXPERIENCE_TYPE_ADVISOR = "AD"
+    EXPERIENCE_TYPE_ATTENDEE = "AT" # For events, conferences
+    EXPERIENCE_TYPE_COHORT_MEMBER = "CM" # For accelerator programs, specific training cohorts
+    EXPERIENCE_TYPE_FOUNDER = "FO" # If the organization is their own project/startup
+    EXPERIENCE_TYPE_COMPETITION = "CP" # For hackathons, case competitions
+    EXPERIENCE_TYPE_OTHER = "OT"
+
+    EXPERIENCE_TYPES = [
+        (EXPERIENCE_TYPE_EMPLOYMENT, "Employment (Full/Part-time)"),
+        (EXPERIENCE_TYPE_INTERNSHIP, "Internship"),
+        (EXPERIENCE_TYPE_VOLUNTEER, "Volunteer"),
+        (EXPERIENCE_TYPE_ACADEMIC, "Academic (e.g., Research/Teaching Assistant)"),
+        (EXPERIENCE_TYPE_FREELANCE, "Freelance/Contract"),
+        (EXPERIENCE_TYPE_BOARD_MEMBER, "Board Member"),
+        (EXPERIENCE_TYPE_MENTOR, "Mentor"),
+        (EXPERIENCE_TYPE_ADVISOR, "Advisor"),
+        (EXPERIENCE_TYPE_ATTENDEE, "Event Attendee"),
+        (EXPERIENCE_TYPE_COHORT_MEMBER, "Program/Cohort Member"),
+        (EXPERIENCE_TYPE_FOUNDER, "Founder"),
+        (EXPERIENCE_TYPE_COMPETITION, "Competition Participant"),
+        (EXPERIENCE_TYPE_OTHER, "Other"),
+    ]
+
     network_member = models.ForeignKey(NetworkMember, on_delete=models.CASCADE, related_name="experiences")
     organization = models.ForeignKey(Organization, on_delete=models.CASCADE, related_name="affiliated-people")
 
     title = models.CharField(max_length=255, blank=True, null=True, help_text="Your role or title (e.g., Software Engineer, Attendee, Cohort Member)")
-    start_date = models.DateField(null=True, blank=True)
+    experience_type = models.CharField(
+        max_length=2,
+        choices=EXPERIENCE_TYPES,
+        help_text="The nature of your involvement with this organization."
+    )
+    start_date = models.DateField()
     end_date = models.DateField(null=True, blank=True)
     is_current = models.BooleanField(default=False)
     description = models.TextField(blank=True, null=True, help_text="Describe your responsibilities, achievements, or what you learned/contributed.")
