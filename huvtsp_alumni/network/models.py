@@ -27,10 +27,13 @@ class NetworkMember(models.Model):
     pod = models.CharField(max_length=200)
     internship = models.CharField(max_length=200)
     email = models.EmailField(unique=True)
-    skills = models.TextField()
-    additional_info = models.TextField()
+    skills = models.TextField(null=True, blank=True)
+    additional_info = models.TextField(null=True, blank=True)
     avatar = models.ImageField(upload_to="avatars", null=True, blank=True)
     slug = models.SlugField(unique=True)
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name} - {self.pod}"
 
 
 # this helps in queries like "Is anyone in FinTech Nexus"
@@ -123,7 +126,7 @@ class Experience(models.Model):
 class SocialLink(models.Model):
     title = models.CharField(max_length=100, null=True, blank=True)
     link = models.URLField(max_length=2083)
-    description = models.TextField()
+    description = models.TextField(null=True, blank=True)
     platform = models.CharField(max_length=200, null=True, blank=True) # indicate if it's LinkedIn, website, etc.
     network_member = models.ForeignKey(NetworkMember, on_delete=models.CASCADE, related_name="social_links")
 
@@ -154,8 +157,8 @@ class Project(models.Model):
     type = models.CharField(max_length=5, choices=PROJECT_TYPE_CHOICES)
     stage = models.CharField(max_length=5, choices=STAGE_TYPE_CHOICES)
     founders = models.ManyToManyField(NetworkMember)
-    what_are_they_looking_for = models.TextField()
-    additional_info = models.TextField()
+    what_are_they_looking_for = models.TextField(null=True, blank=True)
+    additional_info = models.TextField(null=True, blank=True)
     slug = models.SlugField(unique=True)
 
     
@@ -172,7 +175,7 @@ class Resources(models.Model):
     slug = models.SlugField(unique=True)
     link = models.URLField(max_length=2083)
     platform = models.CharField(max_length=200, null=True, blank=True) # indicate if it's YC, blog, etc.
-    description = models.TextField()
+    description = models.TextField(null=True, blank=True)
 
 
 
