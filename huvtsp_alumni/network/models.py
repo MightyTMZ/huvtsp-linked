@@ -100,7 +100,7 @@ class Experience(models.Model):
     ]
 
     network_member = models.ForeignKey(NetworkMember, on_delete=models.CASCADE, related_name="experiences")
-    organization = models.ForeignKey(Organization, on_delete=models.CASCADE, related_name="affiliated-people")
+    organization = models.ForeignKey(Organization, on_delete=models.CASCADE, related_name="affiliated_people")
 
     title = models.CharField(max_length=255, blank=True, null=True, help_text="Your role or title (e.g., Software Engineer, Attendee, Cohort Member)")
     experience_type = models.CharField(
@@ -125,7 +125,7 @@ class SocialLink(models.Model):
     link = models.URLField(max_length=2083)
     description = models.TextField()
     platform = models.CharField(max_length=200, null=True, blank=True) # indicate if it's LinkedIn, website, etc.
-    network_member = models.ForeignKey(NetworkMember, on_delete=models.CASCADE, related_name="social-links")
+    network_member = models.ForeignKey(NetworkMember, on_delete=models.CASCADE, related_name="social_links")
 
 
 class Project(models.Model):
@@ -164,7 +164,7 @@ class ProjectLink(models.Model):
     title = models.CharField(max_length=100, null=True, blank=True)
     link = models.URLField(max_length=2083)
     platform = models.CharField(max_length=200, null=True, blank=True) # indicate if it's LinkedIn, website, etc.
-    project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name="project-links")
+    project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name="project_links")
 
 
 class Resources(models.Model):
