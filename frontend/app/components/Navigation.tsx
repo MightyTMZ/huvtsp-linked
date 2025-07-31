@@ -2,12 +2,18 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Search, Filter, TrendingUp, BarChart3 } from "lucide-react";
+import { Search, Filter, TrendingUp, BarChart3, Home } from "lucide-react";
 
 export default function Navigation() {
   const pathname = usePathname();
 
   const navItems = [
+    {
+      name: "Home",
+      href: "/",
+      icon: Home,
+      description: "Welcome page",
+    },
     {
       name: "Smart Search",
       href: "/smart-search",
@@ -34,7 +40,7 @@ export default function Navigation() {
         <div className="flex justify-between h-16">
           <div className="flex">
             <div className="flex-shrink-0 flex items-center">
-              <Link href="/smart-search" className="text-xl font-bold text-gray-900">
+              <Link href="/" className="text-xl font-bold text-gray-900">
                 HUVTSP Alumni
               </Link>
             </div>
