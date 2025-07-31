@@ -1,7 +1,7 @@
 'use client';
 
 import { Search, Filter } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 interface SearchBarProps {
   query: string;
@@ -21,44 +21,60 @@ export default function SearchBar({
   onFiltersChange
 }: SearchBarProps) {
   const [showFilters, setShowFilters] = useState(false);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  // Auto-resize textarea
+  useEffect(() => {
+    if (textareaRef.current) {
+      textareaRef.current.style.height = 'auto';
+      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
+    }
+  }, [query]);
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
       onSearch();
     }
   };
 
   return (
     <div className="max-w-4xl mx-auto mb-8">
-      <div className="relative">
-        <div className="relative">
-          <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
-          <input
-            type="text"
-            value={query}
-            onChange={(e) => onQueryChange(e.target.value)}
-            onKeyPress={handleKeyPress}
-            placeholder="Ask anything... e.g., 'do you know any people who are really good with graphic design?'"
-            className="w-full pl-12 pr-4 py-4 text-lg border border-border rounded-xl bg-background focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent transition-all duration-200"
-          />
-        </div>
-        <div className="absolute right-2 top-1/2 transform -translate-y-1/2 flex items-center space-x-2">
+      {/* Search Input */}
+      <div className="relative mb-4">
+        <Search className="absolute left-4 top-4 text-muted-foreground w-5 h-5" />
+        <textarea
+          ref={textareaRef}
+          value={query}
+          onChange={(e) => onQueryChange(e.target.value)}
+          onKeyPress={handleKeyPress}
+          placeholder="Ask anything... e.g., 'do you know any people who are really good with graphic design? They have to design a better logo and help with social media posts.'"
+          className="w-full pl-12 pr-4 py-4 text-lg border border-border rounded-xl bg-background focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent transition-all duration-200 resize-none min-h-[60px] max-h-[200px] overflow-y-auto"
+          rows={1}
+        />
+      </div>
+
+      {/* Action Buttons */}
+      <div className="flex items-center justify-between">
+        <div className="flex items-center space-x-3">
           <button
             onClick={() => setShowFilters(!showFilters)}
-            className={`p-2 rounded-lg transition-colors ${
+            className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-colors ${
               showFilters 
                 ? 'bg-primary text-primary-foreground' 
                 : 'bg-muted text-muted-foreground hover:bg-accent'
             }`}
           >
-            <Filter className="w-5 h-5" />
+            <Filter className="w-4 h-4" />
+            <span className="text-sm font-medium">Filters</span>
           </button>
           <button
             onClick={onSearch}
             disabled={loading || !query.trim()}
-            className="px-6 py-2 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            className="flex items-center space-x-2 px-6 py-2 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >
-            {loading ? 'Searching...' : 'Search'}
+            <Search className="w-4 h-4" />
+            <span>{loading ? 'Searching...' : 'Search'}</span>
           </button>
         </div>
       </div>

@@ -35,13 +35,16 @@ export default function Home() {
 
   // Example queries for inspiration
   const exampleQueries = [
-    "do you know any people who are really good with graphic design?",
-    "I've been thinking about a startup idea and want to see if anyone here might be interested in joining!",
-    "Anyone in Boston rn?",
-    "Does anyone know of a software engineer familiar with mobile apps for a startup?",
-    "Who would likely be interested in a marketing gig for a startup?",
-    "who is interning at Rove?",
-    "Is anyone in FinTech Nexus?"
+    "do you know any people who are really good with graphic design? They have to design a better logo and help with social media posts.",
+    "I've been thinking about a startup idea and want to see if anyone here might be interested in joining! It's basically a dashboard for young founders/builders. A place to track projects, goals, startup progress, and even prep for apps or pitches.",
+    "Anyone in Boston rn? Looking to connect with local alumni for coffee and networking.",
+    "Does anyone know of a software engineer familiar with mobile apps for a startup? We're building an iOS app and need someone with React Native experience.",
+    "Who would likely be interested in a marketing gig for a startup? We're looking for someone to help with content creation and social media strategy.",
+    "who is interning at Rove? Would love to connect and learn about their experience.",
+    "Is anyone in FinTech Nexus? Looking to network with other fintech professionals.",
+    "We have an opening for CMO. It's a B2B SaaS startup focused on productivity tools. Can you find someone who may be interested?",
+    "Looking for web dev/full stack interns. We use React, Node.js, and PostgreSQL. Also need marketing help for content creation.",
+    "Has anyone has experience with building relatively complex websites or no code? We're exploring different approaches for our MVP."
   ];
 
   const handleSearch = async () => {
