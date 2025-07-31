@@ -28,7 +28,7 @@ const PasswordProtection = ({ children }: PasswordProtectionProps) => {
     setError("");
 
     // Simple password validation - in production, this should be handled server-side
-    const correctPassword = "HUVTSP2025"; // You can change this password
+    const correctPassword = "HUVT$P2025";
     
     if (password === correctPassword) {
       setIsAuthenticated(true);
