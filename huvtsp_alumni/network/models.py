@@ -190,4 +190,27 @@ class Resources(models.Model):
     description = models.TextField(null=True, blank=True)
 
 
+class SearchTracking(models.Model):
+    """Model to track search analytics"""
+    SEARCH_TYPE_FILTER = "filter"
+    SEARCH_TYPE_SMART = "smart"
+    
+    SEARCH_TYPES = [
+        (SEARCH_TYPE_FILTER, "Filter Search"),
+        (SEARCH_TYPE_SMART, "Smart Search"),
+    ]
+    
+    search_type = models.CharField(max_length=10, choices=SEARCH_TYPES)
+    query = models.TextField(blank=True, null=True)
+    filters = models.JSONField(default=dict, blank=True)
+    results_count = models.IntegerField(default=0)
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        ordering = ['-created_at']
+    
+    def __str__(self):
+        return f"{self.search_type} search at {self.created_at}"
+
+
 

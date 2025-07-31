@@ -6,20 +6,34 @@ from django_filters.rest_framework import DjangoFilterBackend
 from django.db.models import Q, Count
 from .models import (
     NetworkMember, Organization, Experience, SocialLink, 
-    Project, ProjectLink, Resources
+    Project, ProjectLink, Resources, SearchTracking
 )
 from .serializers import (
     NetworkMemberSerializer, NetworkMemberDetailSerializer, NetworkMemberListSerializer,
     OrganizationSerializer, OrganizationDetailSerializer, OrganizationListSerializer,
     ExperienceSerializer, SocialLinkSerializer, ProjectSerializer, 
     ProjectDetailSerializer, ProjectListSerializer, ProjectLinkSerializer,
-    ResourcesSerializer
+    ResourcesSerializer, SearchTrackingSerializer
 )
 from .services import IntelligentMatchingService
 
 import openai
 import re
 from typing import List, Dict, Any
+
+
+def track_search(search_type: str, query: str = "", filters: dict = None, results_count: int = 0):
+    """Utility function to track search analytics"""
+    try:
+        SearchTracking.objects.create(
+            search_type=search_type,
+            query=query,
+            filters=filters or {},
+            results_count=results_count
+        )
+    except Exception as e:
+        # Log error but don't break the search functionality
+        print(f"Error tracking search: {e}")
 
 
 class NetworkMemberViewSet(viewsets.ModelViewSet):
@@ -37,6 +51,30 @@ class NetworkMemberViewSet(viewsets.ModelViewSet):
         elif self.action == 'retrieve':
             return NetworkMemberDetailSerializer
         return NetworkMemberSerializer
+
+    def list(self, request, *args, **kwargs):
+        """Override list to track filter searches"""
+        response = super().list(request, *args, **kwargs)
+        
+        # Track the search
+        query = request.query_params.get('search', '')
+        filters = {
+            'region': request.query_params.get('region', ''),
+            'session': request.query_params.get('session', ''),
+            'pod': request.query_params.get('pod', ''),
+            'internship': request.query_params.get('internship', ''),
+            'ordering': request.query_params.get('ordering', ''),
+        }
+        results_count = response.data.get('count', 0) if hasattr(response.data, 'get') else len(response.data)
+        
+        track_search(
+            search_type=SearchTracking.SEARCH_TYPE_FILTER,
+            query=query,
+            filters=filters,
+            results_count=results_count
+        )
+        
+        return response
 
     @action(detail=False, methods=['get'])
     def by_region(self, request):
@@ -299,6 +337,24 @@ class IntelligentSearchViewSet(viewsets.ViewSet):
         # Get search suggestions
         suggestions = self.matching_service.get_matching_suggestions(query)
         
+        # Track the smart search
+        filters = {
+            'region': region,
+            'session': session,
+            'pod': pod,
+            'intent': intent,
+            'skills': skills,
+            'locations': locations,
+            'companies': companies,
+        }
+        
+        track_search(
+            search_type=SearchTracking.SEARCH_TYPE_SMART,
+            query=query,
+            filters=filters,
+            results_count=len(results)
+        )
+        
         return Response({
             'results': results[:20],  # Limit to top 20 results
             'query': query,
@@ -324,19 +380,16 @@ class NetworkStatsViewSet(viewsets.ViewSet):
     
     @action(detail=False, methods=['get'])
     def overview(self, request):
-        """Get overview statistics for the network"""
+        """Get network overview statistics"""
         stats = {
             'total_members': NetworkMember.objects.count(),
             'total_organizations': Organization.objects.count(),
             'total_projects': Project.objects.count(),
             'total_experiences': Experience.objects.count(),
             'total_resources': Resources.objects.count(),
-            'members_by_region': list(NetworkMember.objects.values('region').annotate(
-                count=Count('id')).order_by('region')),
-            'organizations_by_type': list(Organization.objects.values('type').annotate(
-                count=Count('id')).order_by('type')),
-            'projects_by_stage': list(Project.objects.values('stage').annotate(
-                count=Count('id')).order_by('stage')),
+            'members_by_region': list(NetworkMember.objects.values('region').annotate(count=Count('id')).order_by('region')),
+            'organizations_by_type': list(Organization.objects.values('type').annotate(count=Count('id')).order_by('type')),
+            'projects_by_stage': list(Project.objects.values('stage').annotate(count=Count('id')).order_by('stage')),
         }
         return Response(stats)
 
@@ -373,3 +426,66 @@ class NetworkStatsViewSet(viewsets.ViewSet):
         }
         
         return Response(results)
+
+    @action(detail=False, methods=['get'])
+    def search_analytics(self, request):
+        """Get search analytics"""
+        from django.utils import timezone
+        from datetime import timedelta
+        
+        # Get date range from query params
+        days = int(request.query_params.get('days', 30))
+        start_date = timezone.now() - timedelta(days=days)
+        
+        # Get search statistics
+        total_searches = SearchTracking.objects.filter(created_at__gte=start_date).count()
+        filter_searches = SearchTracking.objects.filter(
+            search_type=SearchTracking.SEARCH_TYPE_FILTER,
+            created_at__gte=start_date
+        ).count()
+        smart_searches = SearchTracking.objects.filter(
+            search_type=SearchTracking.SEARCH_TYPE_SMART,
+            created_at__gte=start_date
+        ).count()
+        
+        # Get daily search counts
+        daily_searches = SearchTracking.objects.filter(
+            created_at__gte=start_date
+        ).extra(
+            select={'date': 'date(created_at)'}
+        ).values('date').annotate(count=Count('id')).order_by('date')
+        
+        analytics = {
+            'total_searches': total_searches,
+            'filter_searches': filter_searches,
+            'smart_searches': smart_searches,
+            'daily_searches': list(daily_searches),
+            'period_days': days,
+        }
+        
+        return Response(analytics)
+
+
+class SearchTrackingViewSet(viewsets.ModelViewSet):
+    """ViewSet for search tracking analytics"""
+    queryset = SearchTracking.objects.all()
+    serializer_class = SearchTrackingSerializer
+    filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
+    filterset_fields = ['search_type']
+    ordering_fields = ['created_at', 'results_count']
+    ordering = ['-created_at']
+    
+    def get_queryset(self):
+        """Allow filtering by date range"""
+        queryset = super().get_queryset()
+        
+        # Filter by date range if provided
+        start_date = self.request.query_params.get('start_date')
+        end_date = self.request.query_params.get('end_date')
+        
+        if start_date:
+            queryset = queryset.filter(created_at__gte=start_date)
+        if end_date:
+            queryset = queryset.filter(created_at__lte=end_date)
+            
+        return queryset

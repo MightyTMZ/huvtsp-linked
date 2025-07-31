@@ -48,6 +48,9 @@ export async function GET(request: NextRequest) {
     // Get results from Django backend
     const results = await searchBackend(processedQuery, filters);
 
+    // Track the search (async, don't wait for it)
+    trackSearchAnalytics("smart", query, filters, results.length);
+
     return NextResponse.json({
       results: results,
       query: query,
@@ -57,6 +60,68 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     console.error("Search error:", error);
     return NextResponse.json({ error: "Search failed" }, { status: 500 });
+  }
+}
+
+async function trackSearchAnalytics(
+  searchType: string,
+  query: string,
+  filters: any,
+  resultsCount: number
+) {
+  try {
+    const response = await fetch("/api/search-tracking", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        search_type: searchType,
+        query,
+        filters,
+        results_count: resultsCount,
+      }),
+    });
+
+    if (!response.ok) {
+      console.error("Failed to track search analytics");
+    }
+  } catch (error) {
+    console.error("Error tracking search analytics:", error);
+  }
+}
+
+export async function POST(request: NextRequest) {
+  try {
+    const body = await request.json();
+    const { search_type, query, filters, results_count } = body;
+    
+    // Track search analytics in Django backend
+    const backendUrl = process.env.DJANGO_API_URL || "http://127.0.0.1:8000";
+    const response = await fetch(`${backendUrl}/api/search-tracking/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        search_type,
+        query,
+        filters,
+        results_count,
+      }),
+    });
+
+    if (!response.ok) {
+      console.error("Failed to track search:", response.status);
+    }
+
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error("Error tracking search:", error);
+    return NextResponse.json(
+      { error: "Failed to track search" },
+      { status: 500 }
+    );
   }
 }
 

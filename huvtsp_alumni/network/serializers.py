@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from .models import (
     NetworkMember, Organization, Experience, SocialLink, 
-    Project, ProjectLink, Resources
+    Project, ProjectLink, Resources, SearchTracking
 )
 
 
@@ -160,4 +160,16 @@ class ProjectListSerializer(serializers.ModelSerializer):
         read_only_fields = ['slug']
     
     def get_founders_count(self, obj):
-        return obj.founders.count() 
+        return obj.founders.count()
+
+
+class SearchTrackingSerializer(serializers.ModelSerializer):
+    search_type_display = serializers.CharField(source='get_search_type_display', read_only=True)
+    
+    class Meta:
+        model = SearchTracking
+        fields = [
+            'id', 'search_type', 'search_type_display', 'query', 
+            'filters', 'results_count', 'created_at'
+        ]
+        read_only_fields = ['created_at'] 

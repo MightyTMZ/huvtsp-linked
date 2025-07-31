@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import NetworkMember, Organization, Experience, SocialLink, Project, ProjectLink, Resources
+from .models import NetworkMember, Organization, Experience, SocialLink, Project, ProjectLink, Resources, SearchTracking
 
 # Inline classes for related models
 class ExperienceInline(admin.TabularInline):
@@ -131,5 +131,21 @@ class ResourcesAdmin(admin.ModelAdmin):
         }),
         ('Description', {
             'fields': ('description',)
+        }),
+    )
+
+@admin.register(SearchTracking)
+class SearchTrackingAdmin(admin.ModelAdmin):
+    list_display = ('search_type', 'query', 'results_count', 'created_at')
+    list_filter = ('search_type', 'created_at')
+    search_fields = ('query',)
+    readonly_fields = ('created_at',)
+    date_hierarchy = 'created_at'
+    fieldsets = (
+        ('Search Information', {
+            'fields': ('search_type', 'query', 'filters', 'results_count')
+        }),
+        ('Timing', {
+            'fields': ('created_at',)
         }),
     )

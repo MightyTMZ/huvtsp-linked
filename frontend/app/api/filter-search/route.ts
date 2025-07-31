@@ -80,4 +80,37 @@ export async function GET(request: NextRequest) {
       { status: 500 }
     );
   }
+}
+
+export async function POST(request: NextRequest) {
+  try {
+    const body = await request.json();
+    const { search_type, query, filters, results_count } = body;
+    
+    // Track search analytics in Django backend
+    const response = await fetch(`${backendUrl}/api/search-tracking/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        search_type,
+        query,
+        filters,
+        results_count,
+      }),
+    });
+
+    if (!response.ok) {
+      console.error("Failed to track search:", response.status);
+    }
+
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error("Error tracking search:", error);
+    return NextResponse.json(
+      { error: "Failed to track search" },
+      { status: 500 }
+    );
+  }
 } 
