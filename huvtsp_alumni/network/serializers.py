@@ -122,7 +122,7 @@ class NetworkMemberListSerializer(serializers.ModelSerializer):
         model = NetworkMember
         fields = [
             'id', 'first_name', 'last_name', 'region', 'region_display',
-            'location', 'session', 'pod', 'email', 'slug', 'experiences_count'
+            'location', 'session', 'pod', 'internship', 'email', 'slug', 'experiences_count'
         ]
         read_only_fields = ['slug']
     

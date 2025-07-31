@@ -53,7 +53,7 @@ class IntelligentMatchingService:
     # Company/Organization patterns
     COMPANIES = [
         'rove', 'nyx ventures', 'touchpoint legal', 'stripe', 'zoom', 'google', 
-        'microsoft', 'fintech nexus', 'databricks'
+        'microsoft', 'reddit', 'nvidia', 'databricks', 
     ]
     
     # Project/Startup patterns
