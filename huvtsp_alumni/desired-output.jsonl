@@ -1,0 +1,1400 @@
+{
+  "input": {
+    "messages": [
+      {
+        "role": "user",
+        "content": "do you know any people who are really good with graphic design?"
+      }
+    ],
+    "tools": [],
+    "parallel_tool_calls": true
+  },
+  "preferred_output": [
+    {
+      "role": "assistant",
+      "content": "SELECT * FROM network_networkmember WHERE LOWER(skills) LIKE '%graphic design%' OR LOWER(skills) LIKE '%branding%' OR LOWER(skills) LIKE '%photoshop%' OR LOWER(skills) LIKE '%figma%' OR LOWER(skills) LIKE '%canva%' OR LOWER(skills) LIKE '%social media%';"
+    }
+  ],
+  "non_preferred_output": [
+    {
+      "role": "assistant",
+      "content": "SELECT * FROM network_networkmember WHERE LOWER(skills) LIKE '%graphic design%'"
+    }
+  ]
+},
+
+{
+  "input": {
+    "messages": [
+      {
+        "role": "user",
+        "content": "do you know any people who are really good with graphic design. They have to design a better logo and help with social media posts?"
+      }
+    ],
+    "tools": [],
+    "parallel_tool_calls": true
+  },
+  "preferred_output": [
+    {
+      "role": "assistant",
+      "content": "SELECT * FROM network_networkmember WHERE LOWER(skills) LIKE '%graphic design%' AND LOWER(skills) LIKE '%logo%' AND LOWER(skills) LIKE '%social media%' OR LOWER(skills) LIKE '%branding%' OR LOWER(skills) LIKE '%photoshop%' OR LOWER(skills) LIKE '%figma%' OR LOWER(skills) LIKE '%canva%' OR LOWER(skills) LIKE '%social media%';"
+    }
+  ],
+  "non_preferred_output": [
+    {
+      "role": "assistant",
+      "content": "SELECT * FROM network_networkmember WHERE LOWER(skills) LIKE '%graphic design%' OR LOWER(skills) LIKE '%branding%' OR LOWER(skills) LIKE '%photoshop%' OR LOWER(skills) LIKE '%figma%' OR LOWER(skills) LIKE '%canva%' OR LOWER(skills) LIKE '%social media%';"
+    }
+  ]
+},
+
+{
+  "input": {
+    "messages": [
+      {
+        "role": "user",
+        "content": "I’ve been thinking about a startup idea and want to see if anyone here might be interested in joining! It’s basically a dashboard for young  founders/builders. A place to track projects, goals, startup progress, and even prep for apps or pitches."
+      }
+    ],
+    "tools": [],
+    "parallel_tool_calls": true
+  },
+  "preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ],
+  "non_preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ]
+},
+
+{
+  "input": {
+    "messages": [
+      {
+        "role": "user",
+        "content": ""
+      }
+    ],
+    "tools": [],
+    "parallel_tool_calls": true
+  },
+  "preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ],
+  "non_preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ]
+},
+
+{
+  "input": {
+    "messages": [
+      {
+        "role": "user",
+        "content": ""
+      }
+    ],
+    "tools": [],
+    "parallel_tool_calls": true
+  },
+  "preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ],
+  "non_preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ]
+},
+
+{
+  "input": {
+    "messages": [
+      {
+        "role": "user",
+        "content": ""
+      }
+    ],
+    "tools": [],
+    "parallel_tool_calls": true
+  },
+  "preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ],
+  "non_preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ]
+},
+
+{
+  "input": {
+    "messages": [
+      {
+        "role": "user",
+        "content": ""
+      }
+    ],
+    "tools": [],
+    "parallel_tool_calls": true
+  },
+  "preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ],
+  "non_preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ]
+},
+
+{
+  "input": {
+    "messages": [
+      {
+        "role": "user",
+        "content": ""
+      }
+    ],
+    "tools": [],
+    "parallel_tool_calls": true
+  },
+  "preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ],
+  "non_preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ]
+},
+
+{
+  "input": {
+    "messages": [
+      {
+        "role": "user",
+        "content": ""
+      }
+    ],
+    "tools": [],
+    "parallel_tool_calls": true
+  },
+  "preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ],
+  "non_preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ]
+},
+
+{
+  "input": {
+    "messages": [
+      {
+        "role": "user",
+        "content": ""
+      }
+    ],
+    "tools": [],
+    "parallel_tool_calls": true
+  },
+  "preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ],
+  "non_preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ]
+},
+
+{
+  "input": {
+    "messages": [
+      {
+        "role": "user",
+        "content": ""
+      }
+    ],
+    "tools": [],
+    "parallel_tool_calls": true
+  },
+  "preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ],
+  "non_preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ]
+},
+
+{
+  "input": {
+    "messages": [
+      {
+        "role": "user",
+        "content": ""
+      }
+    ],
+    "tools": [],
+    "parallel_tool_calls": true
+  },
+  "preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ],
+  "non_preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ]
+},
+
+{
+  "input": {
+    "messages": [
+      {
+        "role": "user",
+        "content": ""
+      }
+    ],
+    "tools": [],
+    "parallel_tool_calls": true
+  },
+  "preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ],
+  "non_preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ]
+},
+
+{
+  "input": {
+    "messages": [
+      {
+        "role": "user",
+        "content": ""
+      }
+    ],
+    "tools": [],
+    "parallel_tool_calls": true
+  },
+  "preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ],
+  "non_preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ]
+},
+
+{
+  "input": {
+    "messages": [
+      {
+        "role": "user",
+        "content": ""
+      }
+    ],
+    "tools": [],
+    "parallel_tool_calls": true
+  },
+  "preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ],
+  "non_preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ]
+},
+
+{
+  "input": {
+    "messages": [
+      {
+        "role": "user",
+        "content": ""
+      }
+    ],
+    "tools": [],
+    "parallel_tool_calls": true
+  },
+  "preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ],
+  "non_preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ]
+},
+
+{
+  "input": {
+    "messages": [
+      {
+        "role": "user",
+        "content": ""
+      }
+    ],
+    "tools": [],
+    "parallel_tool_calls": true
+  },
+  "preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ],
+  "non_preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ]
+},
+
+{
+  "input": {
+    "messages": [
+      {
+        "role": "user",
+        "content": ""
+      }
+    ],
+    "tools": [],
+    "parallel_tool_calls": true
+  },
+  "preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ],
+  "non_preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ]
+},
+
+{
+  "input": {
+    "messages": [
+      {
+        "role": "user",
+        "content": ""
+      }
+    ],
+    "tools": [],
+    "parallel_tool_calls": true
+  },
+  "preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ],
+  "non_preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ]
+},
+
+{
+  "input": {
+    "messages": [
+      {
+        "role": "user",
+        "content": ""
+      }
+    ],
+    "tools": [],
+    "parallel_tool_calls": true
+  },
+  "preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ],
+  "non_preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ]
+},
+
+{
+  "input": {
+    "messages": [
+      {
+        "role": "user",
+        "content": ""
+      }
+    ],
+    "tools": [],
+    "parallel_tool_calls": true
+  },
+  "preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ],
+  "non_preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ]
+},
+
+{
+  "input": {
+    "messages": [
+      {
+        "role": "user",
+        "content": ""
+      }
+    ],
+    "tools": [],
+    "parallel_tool_calls": true
+  },
+  "preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ],
+  "non_preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ]
+},
+
+{
+  "input": {
+    "messages": [
+      {
+        "role": "user",
+        "content": ""
+      }
+    ],
+    "tools": [],
+    "parallel_tool_calls": true
+  },
+  "preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ],
+  "non_preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ]
+},
+
+{
+  "input": {
+    "messages": [
+      {
+        "role": "user",
+        "content": ""
+      }
+    ],
+    "tools": [],
+    "parallel_tool_calls": true
+  },
+  "preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ],
+  "non_preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ]
+},
+
+{
+  "input": {
+    "messages": [
+      {
+        "role": "user",
+        "content": ""
+      }
+    ],
+    "tools": [],
+    "parallel_tool_calls": true
+  },
+  "preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ],
+  "non_preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ]
+},
+
+{
+  "input": {
+    "messages": [
+      {
+        "role": "user",
+        "content": ""
+      }
+    ],
+    "tools": [],
+    "parallel_tool_calls": true
+  },
+  "preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ],
+  "non_preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ]
+},
+
+{
+  "input": {
+    "messages": [
+      {
+        "role": "user",
+        "content": ""
+      }
+    ],
+    "tools": [],
+    "parallel_tool_calls": true
+  },
+  "preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ],
+  "non_preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ]
+},
+
+{
+  "input": {
+    "messages": [
+      {
+        "role": "user",
+        "content": ""
+      }
+    ],
+    "tools": [],
+    "parallel_tool_calls": true
+  },
+  "preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ],
+  "non_preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ]
+},
+
+{
+  "input": {
+    "messages": [
+      {
+        "role": "user",
+        "content": ""
+      }
+    ],
+    "tools": [],
+    "parallel_tool_calls": true
+  },
+  "preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ],
+  "non_preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ]
+},
+
+{
+  "input": {
+    "messages": [
+      {
+        "role": "user",
+        "content": ""
+      }
+    ],
+    "tools": [],
+    "parallel_tool_calls": true
+  },
+  "preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ],
+  "non_preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ]
+},
+
+{
+  "input": {
+    "messages": [
+      {
+        "role": "user",
+        "content": ""
+      }
+    ],
+    "tools": [],
+    "parallel_tool_calls": true
+  },
+  "preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ],
+  "non_preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ]
+},
+
+{
+  "input": {
+    "messages": [
+      {
+        "role": "user",
+        "content": ""
+      }
+    ],
+    "tools": [],
+    "parallel_tool_calls": true
+  },
+  "preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ],
+  "non_preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ]
+},
+
+{
+  "input": {
+    "messages": [
+      {
+        "role": "user",
+        "content": ""
+      }
+    ],
+    "tools": [],
+    "parallel_tool_calls": true
+  },
+  "preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ],
+  "non_preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ]
+},
+
+{
+  "input": {
+    "messages": [
+      {
+        "role": "user",
+        "content": ""
+      }
+    ],
+    "tools": [],
+    "parallel_tool_calls": true
+  },
+  "preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ],
+  "non_preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ]
+},
+
+{
+  "input": {
+    "messages": [
+      {
+        "role": "user",
+        "content": ""
+      }
+    ],
+    "tools": [],
+    "parallel_tool_calls": true
+  },
+  "preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ],
+  "non_preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ]
+},
+
+{
+  "input": {
+    "messages": [
+      {
+        "role": "user",
+        "content": ""
+      }
+    ],
+    "tools": [],
+    "parallel_tool_calls": true
+  },
+  "preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ],
+  "non_preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ]
+},
+
+{
+  "input": {
+    "messages": [
+      {
+        "role": "user",
+        "content": ""
+      }
+    ],
+    "tools": [],
+    "parallel_tool_calls": true
+  },
+  "preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ],
+  "non_preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ]
+},
+
+{
+  "input": {
+    "messages": [
+      {
+        "role": "user",
+        "content": ""
+      }
+    ],
+    "tools": [],
+    "parallel_tool_calls": true
+  },
+  "preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ],
+  "non_preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ]
+},
+
+{
+  "input": {
+    "messages": [
+      {
+        "role": "user",
+        "content": ""
+      }
+    ],
+    "tools": [],
+    "parallel_tool_calls": true
+  },
+  "preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ],
+  "non_preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ]
+},
+
+{
+  "input": {
+    "messages": [
+      {
+        "role": "user",
+        "content": ""
+      }
+    ],
+    "tools": [],
+    "parallel_tool_calls": true
+  },
+  "preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ],
+  "non_preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ]
+},
+
+{
+  "input": {
+    "messages": [
+      {
+        "role": "user",
+        "content": ""
+      }
+    ],
+    "tools": [],
+    "parallel_tool_calls": true
+  },
+  "preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ],
+  "non_preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ]
+},
+
+{
+  "input": {
+    "messages": [
+      {
+        "role": "user",
+        "content": ""
+      }
+    ],
+    "tools": [],
+    "parallel_tool_calls": true
+  },
+  "preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ],
+  "non_preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ]
+},
+
+{
+  "input": {
+    "messages": [
+      {
+        "role": "user",
+        "content": ""
+      }
+    ],
+    "tools": [],
+    "parallel_tool_calls": true
+  },
+  "preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ],
+  "non_preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ]
+},
+
+{
+  "input": {
+    "messages": [
+      {
+        "role": "user",
+        "content": ""
+      }
+    ],
+    "tools": [],
+    "parallel_tool_calls": true
+  },
+  "preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ],
+  "non_preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ]
+},
+
+{
+  "input": {
+    "messages": [
+      {
+        "role": "user",
+        "content": ""
+      }
+    ],
+    "tools": [],
+    "parallel_tool_calls": true
+  },
+  "preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ],
+  "non_preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ]
+},
+
+{
+  "input": {
+    "messages": [
+      {
+        "role": "user",
+        "content": ""
+      }
+    ],
+    "tools": [],
+    "parallel_tool_calls": true
+  },
+  "preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ],
+  "non_preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ]
+},
+
+{
+  "input": {
+    "messages": [
+      {
+        "role": "user",
+        "content": ""
+      }
+    ],
+    "tools": [],
+    "parallel_tool_calls": true
+  },
+  "preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ],
+  "non_preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ]
+},
+
+{
+  "input": {
+    "messages": [
+      {
+        "role": "user",
+        "content": ""
+      }
+    ],
+    "tools": [],
+    "parallel_tool_calls": true
+  },
+  "preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ],
+  "non_preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ]
+},
+
+{
+  "input": {
+    "messages": [
+      {
+        "role": "user",
+        "content": ""
+      }
+    ],
+    "tools": [],
+    "parallel_tool_calls": true
+  },
+  "preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ],
+  "non_preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ]
+},
+
+{
+  "input": {
+    "messages": [
+      {
+        "role": "user",
+        "content": ""
+      }
+    ],
+    "tools": [],
+    "parallel_tool_calls": true
+  },
+  "preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ],
+  "non_preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ]
+},
+
+{
+  "input": {
+    "messages": [
+      {
+        "role": "user",
+        "content": ""
+      }
+    ],
+    "tools": [],
+    "parallel_tool_calls": true
+  },
+  "preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ],
+  "non_preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ]
+},
+
+{
+  "input": {
+    "messages": [
+      {
+        "role": "user",
+        "content": ""
+      }
+    ],
+    "tools": [],
+    "parallel_tool_calls": true
+  },
+  "preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ],
+  "non_preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ]
+},
+
+{
+  "input": {
+    "messages": [
+      {
+        "role": "user",
+        "content": ""
+      }
+    ],
+    "tools": [],
+    "parallel_tool_calls": true
+  },
+  "preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ],
+  "non_preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ]
+},
+
+{
+  "input": {
+    "messages": [
+      {
+        "role": "user",
+        "content": ""
+      }
+    ],
+    "tools": [],
+    "parallel_tool_calls": true
+  },
+  "preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ],
+  "non_preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ]
+},
+
+{
+  "input": {
+    "messages": [
+      {
+        "role": "user",
+        "content": ""
+      }
+    ],
+    "tools": [],
+    "parallel_tool_calls": true
+  },
+  "preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ],
+  "non_preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ]
+},
+
+{
+  "input": {
+    "messages": [
+      {
+        "role": "user",
+        "content": ""
+      }
+    ],
+    "tools": [],
+    "parallel_tool_calls": true
+  },
+  "preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ],
+  "non_preferred_output": [
+    {
+      "role": "assistant",
+      "content": ""
+    }
+  ]
+},
+

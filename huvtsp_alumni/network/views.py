@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from rest_framework import viewsets, status, filters
-from rest_framework.decorators import action
+from rest_framework.decorators import action, api_view
 from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
 from django.db.models import Q, Count
@@ -15,6 +15,11 @@ from .serializers import (
     ProjectDetailSerializer, ProjectListSerializer, ProjectLinkSerializer,
     ResourcesSerializer
 )
+from .services import IntelligentMatchingService
+
+import openai
+import re
+from typing import List, Dict, Any
 
 
 class NetworkMemberViewSet(viewsets.ModelViewSet):
@@ -227,6 +232,90 @@ class ResourcesViewSet(viewsets.ModelViewSet):
             count=Count('id')
         ).order_by('platform')
         return Response(platforms)
+
+
+# Enhanced search functionality using IntelligentMatchingService
+class IntelligentSearchViewSet(viewsets.ViewSet):
+    """ViewSet for intelligent search across all models"""
+    
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.matching_service = IntelligentMatchingService()
+    
+    @action(detail=False, methods=['get'])
+    def search(self, request):
+        """Intelligent search that understands natural language queries"""
+        query = request.query_params.get('q', '')
+        intent = request.query_params.get('intent', 'general')
+        skills = request.query_params.get('skills', '').split(',') if request.query_params.get('skills') else []
+        locations = request.query_params.get('locations', '').split(',') if request.query_params.get('locations') else []
+        companies = request.query_params.get('companies', '').split(',') if request.query_params.get('companies') else []
+        
+        # Apply filters
+        region = request.query_params.get('region', '')
+        session = request.query_params.get('session', '')
+        pod = request.query_params.get('pod', '')
+        
+        if not query:
+            return Response({'error': 'Query parameter "q" is required'}, 
+                          status=status.HTTP_400_BAD_REQUEST)
+        
+        # Process the query using the intelligent matching service
+        processed_query = self.matching_service.process_query(query)
+        
+        # Override intent if provided
+        if intent != 'general':
+            processed_query['intent'] = intent
+        
+        # Add additional skills/locations/companies from query params
+        if skills:
+            processed_query['skills'].extend(skills)
+        if locations:
+            processed_query['locations'].extend(locations)
+        if companies:
+            processed_query['companies'].extend(companies)
+        
+        # Remove duplicates
+        processed_query['skills'] = list(set(processed_query['skills']))
+        processed_query['locations'] = list(set(processed_query['locations']))
+        processed_query['companies'] = list(set(processed_query['companies']))
+        
+        # Get results based on intent
+        results = []
+        
+        if intent in ['find_person', 'skill_based', 'location_based', 'company_based'] or intent == 'general':
+            filters = {'region': region, 'session': session, 'pod': pod}
+            member_results = self.matching_service.search_members(processed_query, filters)
+            results.extend(member_results)
+        
+        if intent in ['find_project', 'company_based'] or intent == 'general':
+            project_results = self.matching_service.search_projects(processed_query)
+            results.extend(project_results)
+        
+        if intent in ['find_organization', 'company_based'] or intent == 'general':
+            org_results = self.matching_service.search_organizations(processed_query)
+            results.extend(org_results)
+        
+        # Get search suggestions
+        suggestions = self.matching_service.get_matching_suggestions(query)
+        
+        return Response({
+            'results': results[:20],  # Limit to top 20 results
+            'query': query,
+            'processed_query': processed_query,
+            'suggestions': suggestions,
+            'total': len(results)
+        })
+    
+    @action(detail=False, methods=['get'])
+    def suggestions(self, request):
+        """Get search suggestions based on partial query"""
+        query = request.query_params.get('q', '')
+        if not query:
+            return Response({'suggestions': []})
+        
+        suggestions = self.matching_service.get_matching_suggestions(query)
+        return Response({'suggestions': suggestions})
 
 
 # Additional utility views

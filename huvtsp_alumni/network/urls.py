@@ -12,6 +12,7 @@ router.register(r'projects', views.ProjectViewSet)
 router.register(r'project-links', views.ProjectLinkViewSet)
 router.register(r'resources', views.ResourcesViewSet)
 router.register(r'stats', views.NetworkStatsViewSet, basename='stats')
+router.register(r'search', views.IntelligentSearchViewSet, basename='search')
 
 # The API URLs are now determined automatically by the router
 urlpatterns = [

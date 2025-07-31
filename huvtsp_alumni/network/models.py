@@ -1,4 +1,6 @@
 from django.db import models
+from django.utils.text import slugify
+import uuid
 
 class NetworkMember(models.Model):
     REGION_NORTH_AMERICA = "NA"
@@ -34,7 +36,17 @@ class NetworkMember(models.Model):
 
     def __str__(self):
         return f"{self.first_name} {self.last_name} - {self.pod}"
-
+    
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            base_slug = slugify(f"{self.first_name}-{self.last_name}")
+            unique_slug = base_slug
+            num = 1
+            while NetworkMember.objects.filter(slug=unique_slug).exists():
+                unique_slug = f"{base_slug}-{num}"
+                num += 1
+            self.slug = unique_slug
+        super().save(*args, **kwargs)
 
 # this helps in queries like "Is anyone in FinTech Nexus"
 class Organization(models.Model):    
