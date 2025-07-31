@@ -21,6 +21,7 @@ const regions = [
   { value: "AS", label: "Asia" },
   { value: "AF", label: "Africa" },
   { value: "OC", label: "Oceania" },
+  { value: "AN", label: "Antarctica" },
 ];
 
 const internships = [
@@ -100,6 +101,18 @@ interface SearchResult {
   additional_info: string;
   relevance_score?: number;
   match_reason?: string;
+  experiences?: {
+    id: number;
+    organization: number;
+    organization_name: string;
+    organization_type: string;
+    title: string;
+    experience_type: string;
+    start_date: string;
+    end_date: string | null;
+    is_current: boolean;
+    description: string;
+  }[];
 }
 
 interface SearchResponse {
@@ -124,7 +137,7 @@ const FilterSearch = () => {
   const [results, setResults] = useState<SearchResult[]>([]);
   const [loading, setLoading] = useState(false);
   const [totalResults, setTotalResults] = useState(0);
-  const [showFilters, setShowFilters] = useState(false);
+  const [showFilters, setShowFilters] = useState(true);
   const [searchTimeout, setSearchTimeout] = useState<NodeJS.Timeout | null>(
     null
   );
@@ -238,7 +251,7 @@ const FilterSearch = () => {
         {/* Search Bar */}
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
           <div className="flex items-center space-x-4">
-            {/* <div className="flex-1 relative">
+            <div className="flex-1 relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
               <input
                 type="text"
@@ -247,7 +260,7 @@ const FilterSearch = () => {
                 onChange={(e) => handleSearch(e.target.value)}
                 className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               />
-            </div> */}
+            </div>
             <button
               onClick={() => setShowFilters(!showFilters)}
               className="flex items-center space-x-2 px-4 py-3 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors"

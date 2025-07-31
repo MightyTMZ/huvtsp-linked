@@ -1,12 +1,10 @@
 'use client';
 
-import { Users, Building2, Briefcase, MapPin, MessageSquare, Globe, Award, Star } from 'lucide-react';
+import { Users, Building2, Briefcase, MapPin, MessageSquare, Globe, Award } from 'lucide-react';
 
 interface SearchResult {
   type: 'member' | 'organization' | 'project';
   data: any;
-  relevance_score?: number;
-  match_reason?: string;
 }
 
 interface SearchResultsProps {
@@ -32,10 +30,6 @@ export default function SearchResults({ results, loading, query }: SearchResults
       case 'project': return 'bg-purple-50 border-purple-200 dark:bg-purple-950/20 dark:border-purple-800';
       default: return 'bg-gray-50 border-gray-200 dark:bg-gray-950/20 dark:border-gray-800';
     }
-  };
-
-  const formatRelevanceScore = (score: number) => {
-    return Math.round(score * 100);
   };
 
   if (loading) {
@@ -92,33 +86,17 @@ export default function SearchResults({ results, loading, query }: SearchResults
                 </div>
               </div>
               <div className="flex-1 min-w-0">
-                <div className="flex items-center justify-between mb-2">
-                  <div className="flex items-center space-x-2">
-                    <h4 className="text-lg font-semibold text-foreground">
-                      {result.type === 'member' 
-                        ? `${result.data.first_name} ${result.data.last_name}`
-                        : result.data.title || result.data.name
-                      }
-                    </h4>
-                    <span className="px-2 py-1 text-xs font-medium bg-primary/10 text-primary rounded-full">
-                      {result.type}
-                    </span>
-                  </div>
-                  {result.relevance_score && (
-                    <div className="flex items-center space-x-1 text-sm text-muted-foreground">
-                      <Star className="w-4 h-4 text-yellow-500" />
-                      <span>{formatRelevanceScore(result.relevance_score)}% match</span>
-                    </div>
-                  )}
+                <div className="flex items-center space-x-2 mb-2">
+                  <h4 className="text-lg font-semibold text-foreground">
+                    {result.type === 'member' 
+                      ? `${result.data.first_name} ${result.data.last_name}`
+                      : result.data.title || result.data.name
+                    }
+                  </h4>
+                  <span className="px-2 py-1 text-xs font-medium bg-primary/10 text-primary rounded-full">
+                    {result.type}
+                  </span>
                 </div>
-                
-                {result.match_reason && (
-                  <div className="mb-3">
-                    <p className="text-sm text-primary font-medium">
-                      Why this match: {result.match_reason}
-                    </p>
-                  </div>
-                )}
                 
                 {result.type === 'member' && (
                   <div className="space-y-2">
