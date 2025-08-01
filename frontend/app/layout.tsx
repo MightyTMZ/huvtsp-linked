@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navigation from "./components/Navigation";
 import PasswordProtection from "./components/PasswordProtection";
+import { Analytics } from "@vercel/analytics/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,7 +17,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "HUVTSP 2025 Alumni Network",
-  description: "Connect with HUVTSP alumni, find collaborators, and discover opportunities through intelligent semantic search.",
+  description:
+    "Connect with HUVTSP alumni, find collaborators, and discover opportunities through intelligent semantic search.",
 };
 
 export default function RootLayout({
@@ -32,6 +34,7 @@ export default function RootLayout({
         <PasswordProtection>
           <Navigation />
           {children}
+          <Analytics />
         </PasswordProtection>
       </body>
     </html>
