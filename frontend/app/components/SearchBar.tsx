@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { Search, Filter } from 'lucide-react';
-import { useState, useRef, useEffect } from 'react';
+import { Search, Filter } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
 
 interface SearchBarProps {
   query: string;
@@ -18,7 +18,7 @@ export default function SearchBar({
   onSearch,
   loading,
   filters,
-  onFiltersChange
+  onFiltersChange,
 }: SearchBarProps) {
   const [showFilters, setShowFilters] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
@@ -26,13 +26,13 @@ export default function SearchBar({
   // Auto-resize textarea
   useEffect(() => {
     if (textareaRef.current) {
-      textareaRef.current.style.height = 'auto';
+      textareaRef.current.style.height = "auto";
       textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
     }
   }, [query]);
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
+    if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
       onSearch();
     }
@@ -48,7 +48,7 @@ export default function SearchBar({
           value={query}
           onChange={(e) => onQueryChange(e.target.value)}
           onKeyPress={handleKeyPress}
-          placeholder="Ask anything... e.g., 'do you know any people who are really good with graphic design? They have to design a better logo and help with social media posts.'"
+          placeholder="Ask anything..."
           className="w-full pl-12 pr-4 py-4 text-lg border border-border rounded-xl bg-background focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent transition-all duration-200 resize-none min-h-[60px] max-h-[200px] overflow-y-auto"
           rows={1}
         />
@@ -60,9 +60,9 @@ export default function SearchBar({
           <button
             onClick={() => setShowFilters(!showFilters)}
             className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-colors ${
-              showFilters 
-                ? 'bg-primary text-primary-foreground' 
-                : 'bg-muted text-muted-foreground hover:bg-accent'
+              showFilters
+                ? "bg-primary text-primary-foreground"
+                : "bg-muted text-muted-foreground hover:bg-accent"
             }`}
           >
             <Filter className="w-4 h-4" />
@@ -74,7 +74,7 @@ export default function SearchBar({
             className="flex items-center space-x-2 px-6 py-2 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >
             <Search className="w-4 h-4" />
-            <span>{loading ? 'Searching...' : 'Search'}</span>
+            <span>{loading ? "Searching..." : "Search"}</span>
           </button>
         </div>
       </div>
@@ -85,7 +85,9 @@ export default function SearchBar({
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <select
               value={filters.region}
-              onChange={(e) => onFiltersChange({...filters, region: e.target.value})}
+              onChange={(e) =>
+                onFiltersChange({ ...filters, region: e.target.value })
+              }
               className="px-3 py-2 border border-border rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-ring"
             >
               <option value="">All Regions</option>
@@ -98,7 +100,9 @@ export default function SearchBar({
             </select>
             <select
               value={filters.session}
-              onChange={(e) => onFiltersChange({...filters, session: e.target.value})}
+              onChange={(e) =>
+                onFiltersChange({ ...filters, session: e.target.value })
+              }
               className="px-3 py-2 border border-border rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-ring"
             >
               <option value="">All Sessions</option>
@@ -108,7 +112,9 @@ export default function SearchBar({
             </select>
             <select
               value={filters.pod}
-              onChange={(e) => onFiltersChange({...filters, pod: e.target.value})}
+              onChange={(e) =>
+                onFiltersChange({ ...filters, pod: e.target.value })
+              }
               className="px-3 py-2 border border-border rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-ring"
             >
               <option value="">All Pods</option>
@@ -122,4 +128,4 @@ export default function SearchBar({
       )}
     </div>
   );
-} 
+}

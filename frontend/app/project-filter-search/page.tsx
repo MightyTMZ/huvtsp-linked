@@ -218,7 +218,7 @@ const ProjectFilterSearch = () => {
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     <Building2 className="inline h-4 w-4 mr-1" />
-                    Project Type
+                    Type
                   </label>
                   <select
                     value={filters.type}
@@ -238,7 +238,7 @@ const ProjectFilterSearch = () => {
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     <Target className="inline h-4 w-4 mr-1" />
-                    Project Stage
+                    Stage
                   </label>
                   <select
                     value={filters.stage}
