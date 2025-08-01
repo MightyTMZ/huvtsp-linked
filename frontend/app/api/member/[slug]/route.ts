@@ -4,10 +4,10 @@ const backendUrl = process.env.NEXT_PUBLIC_DJANGO_API_URL || "http://127.0.0.1:8
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { slug: string } }
+  { params }: { params: Promise<{ slug: string }> }
 ) {
   try {
-    const { slug } = params;
+    const { slug } = await params;
 
     // Try to fetch the member by ID first
     let response = await fetch(`${backendUrl}/api/members/${slug}/`);

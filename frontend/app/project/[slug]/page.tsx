@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useParams } from "next/navigation";
 import { Building2, Target, Users, Link as LinkIcon, Mail, MapPin } from "lucide-react";
 import LoadingSpinner from "../../components/LoadingSpinner";
 
@@ -28,13 +29,9 @@ interface ProjectData {
   slug: string;
 }
 
-interface ProjectDetailProps {
-  params: {
-    slug: string;
-  };
-}
-
-const ProjectDetail = ({ params }: ProjectDetailProps) => {
+const ProjectDetail = () => {
+  const params = useParams();
+  const slug = params.slug as string;
   const [project, setProject] = useState<ProjectData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -42,7 +39,7 @@ const ProjectDetail = ({ params }: ProjectDetailProps) => {
   useEffect(() => {
     const fetchProject = async () => {
       try {
-        const response = await fetch(`/api/project/${params.slug}`);
+        const response = await fetch(`/api/project/${slug}`);
         if (response.ok) {
           const data = await response.json();
           setProject(data);
@@ -56,8 +53,10 @@ const ProjectDetail = ({ params }: ProjectDetailProps) => {
       }
     };
 
-    fetchProject();
-  }, [params.slug]);
+    if (slug) {
+      fetchProject();
+    }
+  }, [slug]);
 
   const getTypeLabel = (type: string) => {
     const types: { [key: string]: string } = {
