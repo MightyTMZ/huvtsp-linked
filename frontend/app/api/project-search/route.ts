@@ -48,25 +48,27 @@ export async function GET(request: NextRequest) {
       console.error("Backend request failed:", response.status);
       
       // Fallback to mock data for demo purposes
+      const mockResults = generateMockProjectResults(query, projectType, projectStage);
       return NextResponse.json({
-        results: generateMockProjectResults(query),
+        results: mockResults,
         query: query,
-        total: 3,
+        total: mockResults.length,
       });
     }
   } catch (error) {
     console.error("Error in project search:", error);
     
     // Fallback to mock data for demo purposes
+    const mockResults = generateMockProjectResults(query, projectType, projectStage);
     return NextResponse.json({
-      results: generateMockProjectResults(query),
+      results: mockResults,
       query: query,
-      total: 3,
+      total: mockResults.length,
     });
   }
 }
 
-function generateMockProjectResults(query: string) {
+function generateMockProjectResults(query: string, projectType?: string, projectStage?: string) {
   const lowerQuery = query.toLowerCase();
   
   const mockProjects = [
@@ -121,10 +123,55 @@ function generateMockProjectResults(query: string) {
         match_reason: "Non-profit project needing development and design help",
       },
     },
+    {
+      type: "project",
+      data: {
+        id: 4,
+        title: "TechMentor",
+        type: "NP",
+        stage: "MVP",
+        what_are_they_looking_for:
+          "Looking for experienced developers to mentor junior developers and help build educational content.",
+        additional_info:
+          "A platform connecting experienced developers with junior developers for mentorship and learning.",
+        founders: [{ id: 4, first_name: "Alex", last_name: "Chen", email: "alex.chen@example.com" }],
+        slug: "techmentor",
+        relevance_score: 0.82,
+        match_reason: "Non-profit seeking experienced developers for mentorship",
+      },
+    },
+    {
+      type: "project",
+      data: {
+        id: 5,
+        title: "LocalFood",
+        type: "ST",
+        stage: "J",
+        what_are_they_looking_for:
+          "Looking for designers and marketers to help validate our idea for connecting local farmers with consumers.",
+        additional_info:
+          "A platform to connect local farmers directly with consumers for fresh, sustainable food.",
+        founders: [{ id: 5, first_name: "Emma", last_name: "Wilson", email: "emma.wilson@example.com" }],
+        slug: "localfood",
+        relevance_score: 0.78,
+        match_reason: "Startup in idea stage looking for validation",
+      },
+    },
   ];
 
+  // Filter projects based on type and stage
+  let filteredProjects = mockProjects;
+  
+  if (projectType) {
+    filteredProjects = filteredProjects.filter(project => project.data.type === projectType);
+  }
+  
+  if (projectStage) {
+    filteredProjects = filteredProjects.filter(project => project.data.stage === projectStage);
+  }
+
   // Simple relevance scoring based on query keywords
-  const scoredProjects = mockProjects.map(project => {
+  const scoredProjects = filteredProjects.map(project => {
     let score = 0;
     let reasons: string[] = [];
     

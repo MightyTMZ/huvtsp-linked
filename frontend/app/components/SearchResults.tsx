@@ -152,6 +152,12 @@ export default function SearchResults({ results, loading, query }: SearchResults
                         <span>Contact</span>
                       </button>
                       <span className="text-sm text-muted-foreground">{result.data.email}</span>
+                      <a
+                        href={`/member/${result.data.id}`}
+                        className="flex items-center space-x-1 px-3 py-1 text-sm bg-secondary text-secondary-foreground rounded-lg hover:bg-secondary/80 transition-colors"
+                      >
+                        <span>View Profile →</span>
+                      </a>
                     </div>
                   </div>
                 )}
@@ -169,18 +175,24 @@ export default function SearchResults({ results, loading, query }: SearchResults
                         <p className="text-sm text-muted-foreground">{result.data.description}</p>
                       </div>
                     )}
-                    {result.data.website && (
-                      <div className="pt-2">
+                    <div className="flex items-center space-x-2 pt-2">
+                      {result.data.website && (
                         <a 
                           href={result.data.website}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-sm text-primary hover:underline"
+                          className="flex items-center space-x-1 px-3 py-1 text-sm bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
                         >
-                          Visit Website →
+                          <span>Visit Website →</span>
                         </a>
-                      </div>
-                    )}
+                      )}
+                      <a
+                        href={`/organization/${result.data.slug || result.data.id}`}
+                        className="flex items-center space-x-1 px-3 py-1 text-sm bg-secondary text-secondary-foreground rounded-lg hover:bg-secondary/80 transition-colors"
+                      >
+                        <span>View Details →</span>
+                      </a>
+                    </div>
                   </div>
                 )}
                 
@@ -214,6 +226,14 @@ export default function SearchResults({ results, loading, query }: SearchResults
                         <p className="text-sm text-muted-foreground">{result.data.additional_info}</p>
                       </div>
                     )}
+                    <div className="flex items-center space-x-2 pt-2">
+                      <a
+                        href={`/project/${result.data.slug || result.data.id}`}
+                        className="flex items-center space-x-1 px-3 py-1 text-sm bg-secondary text-secondary-foreground rounded-lg hover:bg-secondary/80 transition-colors"
+                      >
+                        <span>View Details →</span>
+                      </a>
+                    </div>
                   </div>
                 )}
               </div>
