@@ -15,14 +15,26 @@ export default function Navigation() {
       description: "Welcome page",
     },
     {
-      name: "Smart Search",
+      name: "Alumni Search",
       href: "/smart-search",
       icon: Search,
       description: "Natural language search",
     },
     {
-      name: "Filter Search",
+      name: "Alumni Filter",
       href: "/filter-search",
+      icon: Filter,
+      description: "Advanced filtering",
+    },
+    {
+      name: "Ventures Search",
+      href: "/project-smart-search",
+      icon: Search,
+      description: "Natural language search",
+    },
+    {
+      name: "Ventures Filter",
+      href: "/project-filter-search",
       icon: Filter,
       description: "Advanced filtering",
     },
@@ -48,7 +60,7 @@ export default function Navigation() {
               {navItems.map((item) => {
                 const Icon = item.icon;
                 const isActive = pathname === item.href;
-                
+
                 return (
                   <Link
                     key={item.name}
@@ -70,4 +82,4 @@ export default function Navigation() {
       </div>
     </nav>
   );
-} 
+}

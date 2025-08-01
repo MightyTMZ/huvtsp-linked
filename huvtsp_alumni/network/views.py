@@ -195,6 +195,7 @@ class ProjectViewSet(viewsets.ModelViewSet):
     search_fields = ['title', 'what_are_they_looking_for', 'additional_info']
     ordering_fields = ['title', 'type', 'stage']
     ordering = ['title']
+    lookup_field = 'slug'
 
     def get_serializer_class(self):
         if self.action == 'list':
@@ -220,7 +221,7 @@ class ProjectViewSet(viewsets.ModelViewSet):
         return Response(stages)
 
     @action(detail=True, methods=['get'])
-    def founders(self, request, pk=None):
+    def founders(self, request, slug=None):
         """Get all founders for a specific project"""
         project = self.get_object()
         founders = project.founders.all()
@@ -228,7 +229,7 @@ class ProjectViewSet(viewsets.ModelViewSet):
         return Response(serializer.data)
 
     @action(detail=True, methods=['get'])
-    def links(self, request, pk=None):
+    def links(self, request, slug=None):
         """Get all links for a specific project"""
         project = self.get_object()
         links = project.project_links.all()

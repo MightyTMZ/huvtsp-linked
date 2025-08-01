@@ -14,6 +14,26 @@ interface SearchResultsProps {
 }
 
 export default function SearchResults({ results, loading, query }: SearchResultsProps) {
+  // Project type and stage label mappings
+  const projectTypes = [
+    { value: "ST", label: "Startup" },
+    { value: "NP", label: "Non Profit" },
+  ];
+
+  const projectStages = [
+    { value: "J", label: "Just an idea" },
+    { value: "MVP", label: "Research/MVP/Early Development" },
+    { value: "L", label: "Launched Venture" },
+  ];
+
+  const getTypeLabel = (type: string) => {
+    return projectTypes.find((t) => t.value === type)?.label || type;
+  };
+
+  const getStageLabel = (stage: string) => {
+    return projectStages.find((s) => s.value === stage)?.label || stage;
+  };
+
   const getResultIcon = (type: string) => {
     switch (type) {
       case 'member': return <Users className="w-5 h-5" />;
@@ -168,10 +188,10 @@ export default function SearchResults({ results, loading, query }: SearchResults
                   <div className="space-y-2">
                     <div className="flex items-center space-x-4 text-sm text-muted-foreground">
                       <span className="px-2 py-1 bg-purple-100 dark:bg-purple-900/20 text-purple-800 dark:text-purple-200 rounded">
-                        {result.data.type}
+                        {getTypeLabel(result.data.type)}
                       </span>
                       <span className="px-2 py-1 bg-blue-100 dark:bg-blue-900/20 text-blue-800 dark:text-blue-200 rounded">
-                        {result.data.stage}
+                        {getStageLabel(result.data.stage)}
                       </span>
                     </div>
                     {result.data.what_are_they_looking_for && (
