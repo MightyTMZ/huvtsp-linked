@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Building2, Target, Users, Sparkles, Link } from "lucide-react";
-import SearchBar from "../components/SearchBar";
+import ProjectSearchBar from "../components/ProjectSearchBar";
 import SearchResults from "../components/SearchResults";
 
 interface ProjectSearchResult {
@@ -166,7 +166,7 @@ export default function ProjectSmartSearch() {
         </div>
 
         {/* Search Section */}
-        <SearchBar
+        <ProjectSearchBar
           query={query}
           onQueryChange={setQuery}
           onSearch={handleSearch}
