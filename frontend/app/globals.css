@@ -39,7 +39,7 @@
   --font-mono: "Courier New", monospace;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
@@ -57,7 +57,7 @@
     --input: #1e293b;
     --ring: #3b82f6;
   }
-}
+} */
 
 body {
   background: var(--background);
