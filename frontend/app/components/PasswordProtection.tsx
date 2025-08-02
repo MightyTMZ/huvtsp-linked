@@ -146,6 +146,48 @@ const PasswordProtection = ({ children }: PasswordProtectionProps) => {
               Available for access only until September 30, 2025 11:59 PM EST
             </p>
           </div>
+
+          {/* Additional Links */}
+          <div className="mt-6 space-y-3">
+            <div className="text-center">
+              <a
+                href="https://forms.gle/a2rnNLBkHfhieBT46"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center text-blue-600 hover:text-blue-700 text-sm font-medium transition-colors"
+              >
+                Alumni Network Form
+              </a>
+              <p className="text-xs text-gray-500 mt-1">
+                If you are an alumni of HUVTSP 2025, fill in this form to have your profile become visible to others
+              </p>
+            </div>
+
+            <div className="text-center">
+              <a
+                href="https://forms.gle/rivGC6r8qwndHVWP9"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center text-blue-600 hover:text-blue-700 text-sm font-medium transition-colors"
+              >
+                Alumni Venture Form
+              </a>
+              <p className="text-xs text-gray-500 mt-1">
+                If you would like to have your venture or project listed on the HUVTSP 2025 alumni network, fill in this form
+              </p>
+            </div>
+
+            <div className="text-center">
+              <a
+                href="https://www.thecolorproject.world/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center text-blue-600 hover:text-blue-700 text-sm font-medium transition-colors"
+              >
+                Play our clicking game while you wait?
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
