@@ -39,26 +39,6 @@
   --font-mono: "Courier New", monospace;
 }
 
-/* @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-    --primary: #3b82f6;
-    --primary-foreground: #ffffff;
-    --secondary: #1e293b;
-    --secondary-foreground: #f1f5f9;
-    --muted: #1e293b;
-    --muted-foreground: #94a3b8;
-    --accent: #1e293b;
-    --accent-foreground: #f1f5f9;
-    --destructive: #ef4444;
-    --destructive-foreground: #ffffff;
-    --border: #334155;
-    --input: #1e293b;
-    --ring: #3b82f6;
-  }
-} */
-
 body {
   background: var(--background);
   color: var(--foreground);
@@ -127,4 +107,42 @@ body {
   background: rgba(255, 255, 255, 0.25);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+/* Force light mode styles */
+* {
+  color-scheme: light only;
+}
+
+/* Override any dark mode classes */
+.dark {
+  background-color: #ffffff !important;
+  color: #171717 !important;
+}
+
+.dark * {
+  background-color: inherit !important;
+  color: inherit !important;
+}
+
+/* Ensure text is always readable */
+.text-foreground {
+  color: #171717 !important;
+}
+
+.text-muted-foreground {
+  color: #64748b !important;
+}
+
+/* Force light backgrounds */
+.bg-background {
+  background-color: #ffffff !important;
+}
+
+.bg-secondary {
+  background-color: #f1f5f9 !important;
+}
+
+.bg-muted {
+  background-color: #f8fafc !important;
 }

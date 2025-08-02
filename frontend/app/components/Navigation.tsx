@@ -38,12 +38,12 @@ export default function Navigation() {
       icon: Filter,
       description: "Advanced filtering",
     },
-    {
-      name: "Analytics",
-      href: "/analytics",
-      icon: BarChart3,
-      description: "Search statistics",
-    },
+    // {
+    //   name: "Analytics",
+    //   href: "/analytics",
+    //   icon: BarChart3,
+    //   description: "Search statistics",
+    // },
   ];
 
   return (
