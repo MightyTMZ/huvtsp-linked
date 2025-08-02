@@ -18,4 +18,5 @@ router.register(r'search-tracking', views.SearchTrackingViewSet)
 # The API URLs are now determined automatically by the router
 urlpatterns = [
     path('api/', include(router.urls)),
+    path('api/validate-password/', views.validate_password, name='validate_password'),
 ] 

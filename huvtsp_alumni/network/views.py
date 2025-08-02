@@ -490,3 +490,37 @@ class SearchTrackingViewSet(viewsets.ModelViewSet):
             queryset = queryset.filter(created_at__lte=end_date)
             
         return queryset
+
+
+@api_view(['POST'])
+def validate_password(request):
+    """Validate HUVTSP alumni password"""
+    import os
+    
+    password = request.data.get('password', '')
+    
+    if not password:
+        return Response(
+            {'error': 'Password is required'}, 
+            status=status.HTTP_400_BAD_REQUEST
+        )
+    
+    # Get the correct password from environment variable
+    correct_password = os.getenv('HUVTSP_ALUMNI_PASSWORD')
+    
+    if not correct_password:
+        return Response(
+            {'error': 'Password validation not configured'}, 
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR
+        )
+    
+    if password == correct_password:
+        return Response(
+            {'success': True, 'message': 'Password validated successfully'},
+            status=status.HTTP_200_OK
+        )
+    else:
+        return Response(
+            {'error': 'Incorrect password'}, 
+            status=status.HTTP_401_UNAUTHORIZED
+        )

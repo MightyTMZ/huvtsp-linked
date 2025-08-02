@@ -1,2 +1,4 @@
 .env
 __pycache__
+
+cloud_settings.py

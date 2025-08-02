@@ -27,14 +27,26 @@ const PasswordProtection = ({ children }: PasswordProtectionProps) => {
     setIsLoading(true);
     setError("");
 
-    // Simple password validation - in production, this should be handled server-side
-    const correctPassword = process.env.HUVTSP_ALUMNI_PASSWORD
-    
-    if (password === correctPassword) {
-      setIsAuthenticated(true);
-      localStorage.setItem("huvtsp_2025_auth", "true");
-    } else {
-      setError("Incorrect password. Please try again.");
+    try {
+      const response = await fetch('/api/validate-password/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ password }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        setIsAuthenticated(true);
+        localStorage.setItem("huvtsp_2025_auth", "true");
+      } else {
+        setError(data.error || "Incorrect password. Please try again.");
+        setPassword("");
+      }
+    } catch (error) {
+      setError("Network error. Please try again.");
       setPassword("");
     }
     
