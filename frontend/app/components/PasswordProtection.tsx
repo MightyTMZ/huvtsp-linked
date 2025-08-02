@@ -131,7 +131,7 @@ const PasswordProtection = ({ children }: PasswordProtectionProps) => {
             <p className="text-xs text-gray-500">
               This platform is exclusively for HUVTSP 2025 alumni. 
               <br />
-              If you're having trouble accessing, please contact the network administrator.
+              Available for access only until September 30, 2025 11:59 PM EST
             </p>
           </div>
         </div>
