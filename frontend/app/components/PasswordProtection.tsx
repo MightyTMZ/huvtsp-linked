@@ -28,7 +28,7 @@ const PasswordProtection = ({ children }: PasswordProtectionProps) => {
     setError("");
 
     // Simple password validation - in production, this should be handled server-side
-    const correctPassword = "HUVT$P2025";
+    const correctPassword = process.env.HUVTSP_ALUMNI_PASSWORD
     
     if (password === correctPassword) {
       setIsAuthenticated(true);
