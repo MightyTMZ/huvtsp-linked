@@ -146,7 +146,7 @@ export default function SearchResults({ results, loading, query }: SearchResults
                         <p className="text-sm text-gray-600">{result.data.additional_info}</p>
                       </div>
                     )}
-                    <div className="flex items-center space-x-2 pt-2">
+                    <div className="flex flex-wrap items-center gap-2 pt-2">
                       <button className="flex items-center space-x-1 px-3 py-1 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
                         <MessageSquare className="w-4 h-4" />
                         <span>Contact</span>
@@ -175,7 +175,7 @@ export default function SearchResults({ results, loading, query }: SearchResults
                         <p className="text-sm text-gray-600">{result.data.description}</p>
                       </div>
                     )}
-                    <div className="flex items-center space-x-2 pt-2">
+                    <div className="flex flex-wrap items-center gap-2 pt-2">
                       {result.data.website && (
                         <a 
                           href={result.data.website}
@@ -226,7 +226,7 @@ export default function SearchResults({ results, loading, query }: SearchResults
                         <p className="text-sm text-gray-600">{result.data.additional_info}</p>
                       </div>
                     )}
-                    <div className="flex items-center space-x-2 pt-2">
+                    <div className="flex flex-wrap items-center gap-2 pt-2">
                       <a
                         href={`/project/${result.data.slug || result.data.id}`}
                         className="flex items-center space-x-1 px-3 py-1 text-sm bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors"
