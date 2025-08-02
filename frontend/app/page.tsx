@@ -137,7 +137,7 @@ export default function Home() {
         {/* Additional Features Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
           {/* Analytics */}
-          <Link href="/analytics" className="group">
+          {/* <Link href="/analytics" className="group">
             <div className="bg-white/90 backdrop-blur-sm rounded-xl shadow-lg border border-white/20 p-8 hover:shadow-xl hover:scale-105 transition-all duration-300 hover:bg-white/95">
               <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-purple-600 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                 <BarChart3 className="h-6 w-6 text-white" />
@@ -150,7 +150,7 @@ export default function Home() {
                 statistics.
               </p>
             </div>
-          </Link>
+          </Link> */}
         </div>
 
         {/* Quick Stats */}
