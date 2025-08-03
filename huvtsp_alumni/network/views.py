@@ -4,6 +4,8 @@ from rest_framework.decorators import action, api_view
 from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
 from django.db.models import Q, Count
+from django.views.decorators.cache import cache_page
+from django.utils.decorators import method_decorator
 from .models import (
     NetworkMember, Organization, Experience, SocialLink, 
     Project, ProjectLink, Resources, SearchTracking
@@ -52,6 +54,7 @@ class NetworkMemberViewSet(viewsets.ModelViewSet):
             return NetworkMemberDetailSerializer
         return NetworkMemberSerializer
 
+    @method_decorator(cache_page(60 * 10))
     def list(self, request, *args, **kwargs):
         """Override list to track filter searches"""
         response = super().list(request, *args, **kwargs)
@@ -75,7 +78,8 @@ class NetworkMemberViewSet(viewsets.ModelViewSet):
         )
         
         return response
-
+    
+    @method_decorator(cache_page(60 * 10))
     @action(detail=False, methods=['get'])
     def by_region(self, request):
         """Get members grouped by region"""
@@ -84,6 +88,7 @@ class NetworkMemberViewSet(viewsets.ModelViewSet):
         ).order_by('region')
         return Response(regions)
 
+    @method_decorator(cache_page(60 * 10))
     @action(detail=False, methods=['get'])
     def by_session(self, request):
         """Get members grouped by session"""
@@ -92,6 +97,7 @@ class NetworkMemberViewSet(viewsets.ModelViewSet):
         ).order_by('session')
         return Response(sessions)
 
+    @method_decorator(cache_page(60 * 10))
     @action(detail=True, methods=['get'])
     def experiences(self, request, pk=None):
         """Get all experiences for a specific member"""
@@ -100,6 +106,7 @@ class NetworkMemberViewSet(viewsets.ModelViewSet):
         serializer = ExperienceSerializer(experiences, many=True)
         return Response(serializer.data)
 
+    @method_decorator(cache_page(60 * 10))
     @action(detail=True, methods=['get'])
     def social_links(self, request, pk=None):
         """Get all social links for a specific member"""
