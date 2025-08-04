@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Lock, Eye, EyeOff, AlertCircle } from "lucide-react";
+import { Lock, Eye, EyeOff, AlertCircle, Users, Briefcase, Search, Globe } from "lucide-react";
 
 interface PasswordProtectionProps {
   children: React.ReactNode;
@@ -28,10 +28,10 @@ const PasswordProtection = ({ children }: PasswordProtectionProps) => {
     setError("");
 
     try {
-      const response = await fetch('/api/validate-password/', {
-        method: 'POST',
+      const response = await fetch("/api/validate-password/", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ password }),
       });
@@ -49,7 +49,7 @@ const PasswordProtection = ({ children }: PasswordProtectionProps) => {
       setError("Network error. Please try again.");
       setPassword("");
     }
-    
+
     setIsLoading(false);
   };
 
@@ -78,26 +78,100 @@ const PasswordProtection = ({ children }: PasswordProtectionProps) => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center px-4">
-      <div className="max-w-md w-full">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center px-4 py-8">
+      <div className="max-w-4xl w-full">
+        {/* Preview Section */}
+        <div className="bg-white rounded-2xl shadow-xl p-8 mb-6">
+          <div className="text-center mb-8">
+            <div className="mx-auto w-20 h-20 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center mb-4">
+              <Globe className="h-10 w-10 text-white" />
+            </div>
+            <h1 className="text-3xl font-bold text-gray-900 mb-3">
+              Welcome to HUVTSP Alumni Network
+            </h1>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Connect with your fellow HUVTSP 2025 alumni, discover exciting ventures, 
+              and build meaningful professional relationships in our exclusive network.
+            </p>
+          </div>
+
+          {/* Features Preview */}
+          <div className="grid md:grid-cols-3 gap-6 mb-8">
+            <div className="text-center p-6 bg-blue-50 rounded-xl">
+              <div className="mx-auto w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-3">
+                <Users className="h-6 w-6 text-blue-600" />
+              </div>
+              <h3 className="font-semibold text-gray-900 mb-2">Alumni Profiles</h3>
+              <p className="text-sm text-gray-600">
+                Browse detailed profiles of your fellow alumni, including their expertise, 
+                current roles, and contact information.
+              </p>
+            </div>
+
+            <div className="text-center p-6 bg-green-50 rounded-xl">
+              <div className="mx-auto w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-3">
+                <Briefcase className="h-6 w-6 text-green-600" />
+              </div>
+              <h3 className="font-semibold text-gray-900 mb-2">Venture Showcase</h3>
+              <p className="text-sm text-gray-600">
+                Discover exciting projects and ventures launched by your alumni peers. 
+                Find collaborators or get inspired by innovative ideas.
+              </p>
+            </div>
+
+            <div className="text-center p-6 bg-purple-50 rounded-xl">
+              <div className="mx-auto w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mb-3">
+                <Search className="h-6 w-6 text-purple-600" />
+              </div>
+              <h3 className="font-semibold text-gray-900 mb-2">Smart Search</h3>
+              <p className="text-sm text-gray-600">
+                Find alumni by skills, location, industry, or interests. 
+                Connect with people who share your professional goals.
+              </p>
+            </div>
+          </div>
+
+          {/* Stats Preview */}
+          {/* <div className="bg-gradient-to-r from-blue-500 to-indigo-600 rounded-xl p-6 text-white text-center">
+            <div className="grid grid-cols-3 gap-4">
+              <div>
+                <div className="text-2xl font-bold">50+</div>
+                <div className="text-sm opacity-90">Alumni Members</div>
+              </div>
+              <div>
+                <div className="text-2xl font-bold">25+</div>
+                <div className="text-sm opacity-90">Active Ventures</div>
+              </div>
+              <div>
+                <div className="text-2xl font-bold">15+</div>
+                <div className="text-sm opacity-90">Industries</div>
+              </div>
+            </div>
+          </div> */}
+        </div>
+
+        {/* Login Section */}
         <div className="bg-white rounded-2xl shadow-xl p-8">
           {/* Header */}
           <div className="text-center mb-8">
             <div className="mx-auto w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4">
               <Lock className="h-8 w-8 text-blue-600" />
             </div>
-            <h1 className="text-2xl font-bold text-gray-900 mb-2">
-              HUVTSP Alumni Network
-            </h1>
+            <h2 className="text-2xl font-bold text-gray-900 mb-2">
+              Access Your Network
+            </h2>
             <p className="text-gray-600">
-              Access restricted to HUVTSP 2025 alumni only
+              Enter your alumni password to connect with the community
             </p>
           </div>
 
           {/* Password Form */}
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium text-gray-700 mb-2"
+              >
                 Enter Password
               </label>
               <div className="relative">
@@ -115,7 +189,11 @@ const PasswordProtection = ({ children }: PasswordProtectionProps) => {
                   onClick={() => setShowPassword(!showPassword)}
                   className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
                 >
-                  {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+                  {showPassword ? (
+                    <EyeOff className="h-5 w-5" />
+                  ) : (
+                    <Eye className="h-5 w-5" />
+                  )}
                 </button>
               </div>
             </div>
@@ -141,7 +219,7 @@ const PasswordProtection = ({ children }: PasswordProtectionProps) => {
           {/* Footer */}
           <div className="mt-8 text-center">
             <p className="text-xs text-gray-500">
-              This platform is exclusively for HUVTSP 2025 alumni. 
+              This platform is exclusively for HUVTSP 2025 alumni.
               <br />
               Available for access only until September 30, 2025 11:59 PM EST
             </p>
@@ -159,7 +237,8 @@ const PasswordProtection = ({ children }: PasswordProtectionProps) => {
                 Alumni Network Form
               </a>
               <p className="text-xs text-gray-500 mt-1">
-                If you are an alumni of HUVTSP 2025, fill in this form to have your profile become visible to others
+                If you are an alumni of HUVTSP 2025, fill in this form to have
+                your profile become visible to others
               </p>
             </div>
 
@@ -173,7 +252,8 @@ const PasswordProtection = ({ children }: PasswordProtectionProps) => {
                 Alumni Venture Form
               </a>
               <p className="text-xs text-gray-500 mt-1">
-                If you would like to have your venture or project listed on the HUVTSP 2025 alumni network, fill in this form
+                If you would like to have your venture or project listed on the
+                HUVTSP 2025 alumni network, fill in this form
               </p>
             </div>
 
@@ -194,4 +274,4 @@ const PasswordProtection = ({ children }: PasswordProtectionProps) => {
   );
 };
 
-export default PasswordProtection; 
+export default PasswordProtection;
