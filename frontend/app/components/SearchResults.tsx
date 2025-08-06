@@ -84,15 +84,6 @@ export default function SearchResults({ results, loading, query }: SearchResults
 
   return (
     <div className="max-w-4xl mx-auto">
-      <div className="flex items-center justify-between mb-6">
-        <h3 className="text-xl font-semibold text-gray-900">
-          Search Results ({results.length})
-        </h3>
-        <div className="text-sm text-gray-600">
-          Found {results.length} matches
-        </div>
-      </div>
-      
       <div className="space-y-4">
         {results.map((result, index) => (
           <div

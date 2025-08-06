@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import AlumniCard from "../components/AlumniCard";
 import LoadingSpinner from "../components/LoadingSpinner";
+import CSVExport from "../components/CSVExport";
 
 // Filter options
 const regions = [
@@ -405,11 +406,20 @@ const FilterSearch = () => {
                   {loading ? "Loading..." : `${totalResults} Alumni Found`}
                 </span>
               </div>
-              {!loading && totalResults > 0 && (
-                <div className="text-sm text-gray-500">
-                  Showing {results.length} of {totalResults} results
-                </div>
-              )}
+              <div className="flex items-center space-x-4">
+                {!loading && totalResults > 0 && (
+                  <div className="text-sm text-gray-500">
+                    Showing {results.length} of {totalResults} results
+                  </div>
+                )}
+                {!loading && results.length > 0 && (
+                  <CSVExport 
+                    data={results} 
+                    filename="filter-search-results"
+                    disabled={loading}
+                  />
+                )}
+              </div>
             </div>
           </div>
 
