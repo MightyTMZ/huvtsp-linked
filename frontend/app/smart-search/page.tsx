@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { Users, Building2, Briefcase, Sparkles } from "lucide-react";
 import SearchBar from "../components/SearchBar";
 import SearchResults from "../components/SearchResults";
-import CSVExport from "../components/CSVExport";
+import FormLinks from "../components/FormLinks";
 
 interface SearchResult {
   type: "member" | "organization" | "project";
@@ -120,9 +120,6 @@ export default function Home() {
     loadStats();
   }, []);
 
-  // Extract member data for CSV export
-  const memberResults = results.filter(result => result.type === 'member').map(result => result.data);
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
       {/* Main Content */}
@@ -138,6 +135,9 @@ export default function Home() {
             and discover the right people for your needs.
           </p>
         </div>
+
+        {/* Form Links */}
+        <FormLinks />
 
         {/* Search Section */}
         <SearchBar
@@ -170,22 +170,8 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Results with Export */}
-        <div className="max-w-4xl mx-auto">
-          {results.length > 0 && (
-            <div className="flex items-center justify-between mb-6">
-              <h3 className="text-xl font-semibold text-gray-900">
-                Search Results ({results.length})
-              </h3>
-              <CSVExport 
-                data={memberResults} 
-                filename="smart-search-results"
-                disabled={loading}
-              />
-            </div>
-          )}
-          <SearchResults results={results} loading={loading} query={query} />
-        </div>
+        {/* Results */}
+        <SearchResults results={results} loading={loading} query={query} />
       </main>
     </div>
   );

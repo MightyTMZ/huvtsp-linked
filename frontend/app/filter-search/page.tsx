@@ -13,6 +13,7 @@ import {
 import AlumniCard from "../components/AlumniCard";
 import LoadingSpinner from "../components/LoadingSpinner";
 import CSVExport from "../components/CSVExport";
+import FormLinks from "../components/FormLinks";
 
 // Filter options
 const regions = [
@@ -248,6 +249,9 @@ const FilterSearch = () => {
             perfect connection
           </p>
         </div>
+
+        {/* Form Links */}
+        <FormLinks />
 
         {/* Search Bar */}
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">

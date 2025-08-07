@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Building2, Target, Users, Sparkles, Link } from "lucide-react";
 import ProjectSearchBar from "../components/ProjectSearchBar";
 import SearchResults from "../components/SearchResults";
+import FormLinks from "../components/FormLinks";
 
 interface ProjectSearchResult {
   type: "project";
@@ -164,6 +165,9 @@ export default function ProjectSmartSearch() {
             join exciting ventures, or discover projects that match your skills and interests.
           </p>
         </div>
+
+        {/* Form Links */}
+        <FormLinks />
 
         {/* Search Section */}
         <ProjectSearchBar

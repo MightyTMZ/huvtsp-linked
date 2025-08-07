@@ -12,6 +12,7 @@ import {
   Target,
 } from "lucide-react";
 import LoadingSpinner from "../components/LoadingSpinner";
+import FormLinks from "../components/FormLinks";
 
 // Filter options for projects
 const projectTypes = [
@@ -187,6 +188,9 @@ const ProjectFilterSearch = () => {
             collaboration opportunities
           </p>
         </div>
+
+        {/* Form Links */}
+        <FormLinks />
 
         {/* Search Bar */}
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
