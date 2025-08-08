@@ -19,6 +19,14 @@ export const metadata: Metadata = {
   title: "HUVTSP 2025 Alumni Network",
   description:
     "Connect with HUVTSP alumni, find collaborators, and discover opportunities through intelligent semantic search.",
+  openGraph: {
+    images: [
+      {
+        url: "https://www.huvtsp2025alumni.com/ogi.png",
+        alt: "HUVTSP 2025 Alumni Network",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
