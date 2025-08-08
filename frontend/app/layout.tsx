@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navigation from "./components/Navigation";
 import PasswordProtection from "./components/PasswordProtection";
+import Feedback from "./components/Feedback";
 import { Analytics } from "@vercel/analytics/next";
 
 const geistSans = Geist({
@@ -42,6 +43,7 @@ export default function RootLayout({
         <PasswordProtection>
           <Navigation />
           {children}
+          <Feedback variant="floating" />
           <Analytics />
         </PasswordProtection>
       </body>

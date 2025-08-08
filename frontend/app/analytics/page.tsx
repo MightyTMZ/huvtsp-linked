@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Search, Filter, TrendingUp, Users, Calendar } from "lucide-react";
+import Feedback from "../components/Feedback";
 
 interface SearchAnalytics {
   total_searches: number;
@@ -207,6 +208,11 @@ export default function AnalyticsPage() {
             </div>
           </>
         )}
+        
+        {/* Feedback Section */}
+        <div className="mt-8">
+          <Feedback />
+        </div>
       </div>
     </div>
   );

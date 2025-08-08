@@ -11,6 +11,7 @@ import {
   Building2,
   Target,
 } from "lucide-react";
+import Feedback from "./components/Feedback";
 
 export default function Home() {
   return (
@@ -213,6 +214,11 @@ export default function Home() {
               <Filter className="h-5 w-5 mr-2" />
               Browse All
             </Link>
+          </div>
+          
+          {/* Feedback Section */}
+          <div className="mt-8">
+            <Feedback variant="compact" className="text-white/90" />
           </div>
         </div>
       </div>

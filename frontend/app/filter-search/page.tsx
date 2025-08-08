@@ -14,6 +14,7 @@ import AlumniCard from "../components/AlumniCard";
 import LoadingSpinner from "../components/LoadingSpinner";
 import CSVExport from "../components/CSVExport";
 import FormLinks from "../components/FormLinks";
+import Feedback from "../components/Feedback";
 
 // Filter options
 const regions = [
@@ -450,6 +451,11 @@ const FilterSearch = () => {
               </div>
             )}
           </div>
+        </div>
+        
+        {/* Feedback Section */}
+        <div className="mt-8">
+          <Feedback />
         </div>
       </div>
     </div>

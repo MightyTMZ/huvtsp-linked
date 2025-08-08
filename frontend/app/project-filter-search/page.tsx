@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import LoadingSpinner from "../components/LoadingSpinner";
 import FormLinks from "../components/FormLinks";
+import Feedback from "../components/Feedback";
 
 // Filter options for projects
 const projectTypes = [
@@ -336,6 +337,11 @@ const ProjectFilterSearch = () => {
               </div>
             )}
           </div>
+        </div>
+        
+        {/* Feedback Section */}
+        <div className="mt-8">
+          <Feedback />
         </div>
       </div>
     </div>

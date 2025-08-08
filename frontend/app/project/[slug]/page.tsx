@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { Building2, Target, Users, Link as LinkIcon, Mail, MapPin } from "lucide-react";
 import LoadingSpinner from "../../components/LoadingSpinner";
+import Feedback from "../../components/Feedback";
 
 interface ProjectData {
   id: number;
@@ -240,6 +241,11 @@ const ProjectDetail = () => {
               </a>
             ))}
           </div>
+        </div>
+        
+        {/* Feedback Section */}
+        <div className="mt-8">
+          <Feedback />
         </div>
       </div>
     </div>

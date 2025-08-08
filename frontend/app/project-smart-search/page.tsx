@@ -5,6 +5,7 @@ import { Building2, Target, Users, Sparkles, Link } from "lucide-react";
 import ProjectSearchBar from "../components/ProjectSearchBar";
 import SearchResults from "../components/SearchResults";
 import FormLinks from "../components/FormLinks";
+import Feedback from "../components/Feedback";
 
 interface ProjectSearchResult {
   type: "project";
@@ -202,6 +203,11 @@ export default function ProjectSmartSearch() {
 
         {/* Results */}
         <SearchResults results={results} loading={loading} query={query} />
+        
+        {/* Feedback Section */}
+        <div className="max-w-4xl mx-auto mt-12">
+          <Feedback />
+        </div>
       </main>
     </div>
   );

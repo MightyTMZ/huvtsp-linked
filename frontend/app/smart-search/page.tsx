@@ -5,6 +5,7 @@ import { Users, Building2, Briefcase, Sparkles } from "lucide-react";
 import SearchBar from "../components/SearchBar";
 import SearchResults from "../components/SearchResults";
 import FormLinks from "../components/FormLinks";
+import Feedback from "../components/Feedback";
 
 interface SearchResult {
   type: "member" | "organization" | "project";
@@ -172,6 +173,11 @@ export default function Home() {
 
         {/* Results */}
         <SearchResults results={results} loading={loading} query={query} />
+        
+        {/* Feedback Section */}
+        <div className="max-w-4xl mx-auto mt-12">
+          <Feedback />
+        </div>
       </main>
     </div>
   );

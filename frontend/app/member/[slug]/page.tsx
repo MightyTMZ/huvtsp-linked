@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import LoadingSpinner from "../../components/LoadingSpinner";
+import Feedback from "../../components/Feedback";
 
 interface Experience {
   id: number;
@@ -452,6 +453,11 @@ const MemberProfile = () => {
               </Link>
             </div>
           </div>
+        </div>
+        
+        {/* Feedback Section */}
+        <div className="mt-8">
+          <Feedback />
         </div>
       </div>
     </div>

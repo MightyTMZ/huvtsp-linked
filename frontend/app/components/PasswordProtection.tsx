@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Lock, Eye, EyeOff, AlertCircle, Users, Briefcase, Search, Globe } from "lucide-react";
+import Feedback from "./Feedback";
 
 interface PasswordProtectionProps {
   children: React.ReactNode;
@@ -266,6 +267,11 @@ const PasswordProtection = ({ children }: PasswordProtectionProps) => {
               >
                 Play our clicking game while you wait?
               </a>
+            </div>
+
+            {/* Feedback Section */}
+            <div className="text-center">
+              <Feedback variant="compact" />
             </div>
           </div>
         </div>

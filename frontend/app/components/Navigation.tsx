@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Search, Filter, TrendingUp, BarChart3, Home } from "lucide-react";
+import Feedback from "./Feedback";
 
 export default function Navigation() {
   const pathname = usePathname();
@@ -77,6 +78,11 @@ export default function Navigation() {
                 );
               })}
             </div>
+          </div>
+          
+          {/* Feedback Link */}
+          <div className="flex items-center">
+            <Feedback variant="compact" />
           </div>
         </div>
       </div>
