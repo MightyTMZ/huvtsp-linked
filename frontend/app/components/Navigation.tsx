@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Search, Filter, TrendingUp, BarChart3, Home, Menu, X } from "lucide-react";
+import { Search, Filter, TrendingUp, BarChart3, Home, Menu, X, Lightbulb } from "lucide-react";
 import { useState } from "react";
 // import Feedback from "./Feedback";
 
@@ -40,6 +40,12 @@ export default function Navigation() {
       href: "/project-filter-search",
       icon: Filter,
       description: "Advanced filtering",
+    },
+    {
+      name: "Startup Resources",
+      href: "/startup-resources",
+      icon: Lightbulb,
+      description: "Startup tools & resources",
     },
     // {
     //   name: "Analytics",

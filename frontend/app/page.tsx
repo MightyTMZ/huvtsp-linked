@@ -10,6 +10,7 @@ import {
   Sparkles,
   Building2,
   Target,
+  Lightbulb,
 } from "lucide-react";
 import Feedback from "./components/Feedback";
 
@@ -70,7 +71,7 @@ export default function Home() {
         </div>
 
         {/* Features Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-16">
           {/* Smart Search */}
           <Link href="/smart-search" className="group">
             <div className="bg-white/90 backdrop-blur-sm rounded-xl shadow-lg border border-white/20 p-8 hover:shadow-xl hover:scale-105 transition-all duration-300 hover:bg-white/95">
@@ -133,6 +134,21 @@ export default function Home() {
               </p>
             </div>
           </Link>
+
+          {/* Startup Resources */}
+          <Link href="/startup-resources" className="group">
+            <div className="bg-white/90 backdrop-blur-sm rounded-xl shadow-lg border border-white/20 p-8 hover:shadow-xl hover:scale-105 transition-all duration-300 hover:bg-white/95">
+              <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-purple-600 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <Lightbulb className="h-6 w-6 text-white" />
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                Startup Resources
+              </h3>
+              <p className="text-gray-600">
+                Y Combinator, courses, VC firms, tools, and startup communities.
+              </p>
+            </div>
+          </Link>
         </div>
 
         {/* Additional Features Grid */}
@@ -192,7 +208,7 @@ export default function Home() {
           <p className="text-white/90 mb-4 text-lg drop-shadow-md">
             Ready to connect with your fellow alumni and find exciting projects?
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center flex-wrap">
             <Link
               href="/smart-search"
               className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-medium rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
@@ -206,6 +222,13 @@ export default function Home() {
             >
               <Building2 className="h-5 w-5 mr-2" />
               Find Projects
+            </Link>
+            <Link
+              href="/startup-resources"
+              className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-purple-600 to-purple-700 text-white font-medium rounded-lg hover:from-purple-700 hover:to-purple-800 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+            >
+              <Lightbulb className="h-5 w-5 mr-2" />
+              Startup Resources
             </Link>
             <Link
               href="/filter-search"
