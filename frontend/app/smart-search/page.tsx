@@ -55,14 +55,14 @@ export default function Home() {
     "Kevin Lin",
   ];
 
-  const handleSearch = async () => {
-    if (!query.trim()) return;
+  const handleSearch = async (searchQuery?: string) => {
+    const q = searchQuery ?? query;
+
+    if (!q.trim()) return;
 
     setLoading(true);
     try {
-      const response = await fetch(
-        `/api/search?q=${encodeURIComponent(query)}`
-      );
+      const response = await fetch(`/api/search?q=${encodeURIComponent(q)}`);
       const data = await response.json();
       setResults(data.results || []);
     } catch (error) {
@@ -166,9 +166,9 @@ export default function Home() {
               <button
                 key={index}
                 onClick={() => {
-                  setQuery(example);
                   setResults([]);
-                  handleSearch();
+                  setQuery(example);
+                  handleSearch(example);
                 }}
                 className="px-4 py-2 text-sm bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors"
               >

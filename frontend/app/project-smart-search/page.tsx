@@ -63,13 +63,15 @@ export default function ProjectSmartSearch() {
     "Looking for projects that need business development help",
   ];
 
-  const handleSearch = async () => {
-    if (!query.trim()) return;
+  const handleSearch = async (searchQuery?: string) => {
+    const q = searchQuery ?? query;
+
+    if (!q.trim()) return;
 
     setLoading(true);
     try {
       const params = new URLSearchParams({
-        q: query,
+        q: q,
         intent: "find_project",
         ...filters,
       });
@@ -216,7 +218,7 @@ export default function ProjectSmartSearch() {
                 onClick={() => {
                   setQuery(example);
                   setResults([]);
-                  handleSearch();
+                  handleSearch(example);
                 }}
                 className="px-4 py-2 text-sm bg-accent text-accent-foreground rounded-lg hover:bg-accent/80 transition-colors"
               >
