@@ -153,7 +153,7 @@ export default function Home() {
         {/* Example Queries */}
         <div className="max-w-4xl mx-auto mb-8">
           <h3 className="text-lg font-semibold text-gray-900 mb-4">
-            Try these example queries:
+            Common searches:
           </h3>
           <div className="flex flex-wrap gap-2">
             {exampleQueries.map((example, index) => (
