@@ -164,7 +164,7 @@ export default function Home() {
                 key={index}
                 onClick={() => {
                   setQuery(example);
-                  handleSearch();
+                  setResults([])
                 }}
                 className="px-4 py-2 text-sm bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors"
               >
@@ -176,7 +176,7 @@ export default function Home() {
 
         {/* Results */}
         <SearchResults results={results} loading={loading} query={query} />
-        
+
         {/* Feedback Section */}
         <div className="max-w-4xl mx-auto mt-12">
           <Feedback />

@@ -73,7 +73,7 @@ export default function ProjectSmartSearch() {
         intent: "find_project",
         ...filters,
       });
-      
+
       const response = await fetch(`/api/project-search?${params}`);
       const data = await response.json();
       setResults(data.results || []);
@@ -92,10 +92,18 @@ export default function ProjectSmartSearch() {
               "Looking for marketing and design talent to help with branding and user acquisition. Also need developers familiar with React and Node.js.",
             additional_info:
               "A comprehensive dashboard for young founders to track projects, goals, startup progress, and even prep for apps or pitches.",
-            founders: [{ id: 1, first_name: "Mike", last_name: "Davis", email: "mike.davis@example.com" }],
+            founders: [
+              {
+                id: 1,
+                first_name: "Mike",
+                last_name: "Davis",
+                email: "mike.davis@example.com",
+              },
+            ],
             slug: "founder-dashboard",
             relevance_score: 0.94,
-            match_reason: "Startup looking for marketing and development talent",
+            match_reason:
+              "Startup looking for marketing and development talent",
           },
         },
         {
@@ -109,7 +117,14 @@ export default function ProjectSmartSearch() {
               "Seeking educators and content creators to help develop educational materials and expand our platform.",
             additional_info:
               "Educational platform connecting teachers and students globally.",
-            founders: [{ id: 2, first_name: "Caleb", last_name: "Lu", email: "caleb.lu@example.com" }],
+            founders: [
+              {
+                id: 2,
+                first_name: "Caleb",
+                last_name: "Lu",
+                email: "caleb.lu@example.com",
+              },
+            ],
             slug: "teachshare",
             relevance_score: 0.88,
             match_reason: "Educational startup seeking content creators",
@@ -126,10 +141,18 @@ export default function ProjectSmartSearch() {
               "Looking for developers and designers to help build a platform for connecting environmental organizations.",
             additional_info:
               "A platform to connect environmental organizations and volunteers for sustainability projects.",
-            founders: [{ id: 3, first_name: "Sarah", last_name: "Green", email: "sarah.green@example.com" }],
+            founders: [
+              {
+                id: 3,
+                first_name: "Sarah",
+                last_name: "Green",
+                email: "sarah.green@example.com",
+              },
+            ],
             slug: "ecoconnect",
             relevance_score: 0.85,
-            match_reason: "Non-profit project needing development and design help",
+            match_reason:
+              "Non-profit project needing development and design help",
           },
         },
       ]);
@@ -162,8 +185,9 @@ export default function ProjectSmartSearch() {
             Find Your Next Project
           </h2>
           <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
-            Search through HUVTSP alumni projects to find collaboration opportunities, 
-            join exciting ventures, or discover projects that match your skills and interests.
+            Search through HUVTSP alumni projects to find collaboration
+            opportunities, join exciting ventures, or discover projects that
+            match your skills and interests.
           </p>
         </div>
 
@@ -183,7 +207,7 @@ export default function ProjectSmartSearch() {
         {/* Example Queries */}
         <div className="max-w-4xl mx-auto mb-8">
           <h3 className="text-lg font-semibold text-foreground mb-4">
-            Common searches: 
+            Common searches:
           </h3>
           <div className="flex flex-wrap gap-2">
             {exampleQueries.map((example, index) => (
@@ -191,7 +215,7 @@ export default function ProjectSmartSearch() {
                 key={index}
                 onClick={() => {
                   setQuery(example);
-                  handleSearch();
+                  setResults([]);
                 }}
                 className="px-4 py-2 text-sm bg-accent text-accent-foreground rounded-lg hover:bg-accent/80 transition-colors"
               >
@@ -203,7 +227,7 @@ export default function ProjectSmartSearch() {
 
         {/* Results */}
         <SearchResults results={results} loading={loading} query={query} />
-        
+
         {/* Feedback Section */}
         <div className="max-w-4xl mx-auto mt-12">
           <Feedback />
@@ -211,4 +235,4 @@ export default function ProjectSmartSearch() {
       </main>
     </div>
   );
-} 
+}
