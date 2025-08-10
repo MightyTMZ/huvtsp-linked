@@ -216,6 +216,7 @@ export default function ProjectSmartSearch() {
                 onClick={() => {
                   setQuery(example);
                   setResults([]);
+                  handleSearch();
                 }}
                 className="px-4 py-2 text-sm bg-accent text-accent-foreground rounded-lg hover:bg-accent/80 transition-colors"
               >
