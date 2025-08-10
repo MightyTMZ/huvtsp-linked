@@ -216,7 +216,7 @@ const STARTUP_RESOURCES: Resource[] = [
     difficulty: "advanced",
     tags: ["global", "all stages", "technology", "enterprise"],
     provider: "Accel",
-    image: "/resources/default.svg"
+    image: "/resources/accel.png"
   },
 
   // Tools & Platforms
@@ -249,7 +249,7 @@ const STARTUP_RESOURCES: Resource[] = [
     difficulty: "beginner",
     tags: ["productivity", "collaboration", "documentation", "project management"],
     provider: "Notion",
-    image: "/resources/notion.svg"
+    image: "/resources/notion.png"
   },
   {
     id: "figma",
@@ -380,6 +380,8 @@ const STARTUP_RESOURCES: Resource[] = [
     provider: "Crunchbase",
     image: "/resources/crunchbase.png"
   },
+
+  
 ];
 
 const CATEGORIES = [
@@ -508,6 +510,10 @@ export default function StartupResources() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="text-center mb-8">
+          <div className="inline-flex items-center px-3 py-1 bg-green-100 text-green-800 text-sm font-medium rounded-full mb-4">
+            <Globe className="h-4 w-4 mr-2" />
+            Public Access
+          </div>
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
             Startup Resources Hub
           </h1>
