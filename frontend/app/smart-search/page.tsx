@@ -37,6 +37,9 @@ export default function Home() {
 
   // Example queries for inspiration
   const exampleQueries = [
+    "mark cuban",
+    "caleb kline",
+    "arhan chhabra",
     "do you know any people who are really good with graphic design? They have to design a better logo and help with social media posts.",
     "I've been thinking about a startup idea and want to see if anyone here might be interested in joining! It's basically a dashboard for young founders/builders. A place to track projects, goals, startup progress, and even prep for apps or pitches.",
     // "Anyone in Boston rn? Looking to connect with local alumni for coffee and networking.",
