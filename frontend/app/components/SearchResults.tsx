@@ -146,6 +146,7 @@ export default function SearchResults({ results, loading, query }: SearchResults
                       <a
                         href={`/member/${result.data.id}`}
                         className="flex items-center space-x-1 px-3 py-1 text-sm bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors"
+                        target="_blank"
                       >
                         <span>View Profile →</span>
                       </a>
@@ -180,6 +181,7 @@ export default function SearchResults({ results, loading, query }: SearchResults
                       <a
                         href={`/organization/${result.data.slug || result.data.id}`}
                         className="flex items-center space-x-1 px-3 py-1 text-sm bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors"
+                        target='_blank'
                       >
                         <span>View Details →</span>
                       </a>
@@ -221,6 +223,7 @@ export default function SearchResults({ results, loading, query }: SearchResults
                       <a
                         href={`/project/${result.data.slug || result.data.id}`}
                         className="flex items-center space-x-1 px-3 py-1 text-sm bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors"
+                        target='_blank'
                       >
                         <span>View Details →</span>
                       </a>
