@@ -68,7 +68,6 @@ class IntelligentMatchingService:
         'australia',
         'oceania',
         'europe',
-        ''
         'los angeles', 
         'chicago', 
         'denver', 
@@ -128,7 +127,7 @@ class IntelligentMatchingService:
         'germany',
         'bangladesh',
         'pakistan',
-        'vancouver'
+        'vancouver',
     ]
     
     # Company/Organization patterns
@@ -239,11 +238,12 @@ class IntelligentMatchingService:
             'skills': list(set(found_skills)),
             'locations': found_locations,
             'companies': found_companies,
-            'projects': found_projects
+            'projects': found_projects,
+            'pods': found_pods,
         }
     
     def _determine_intent(self, query: str, skills: List[str], locations: List[str], 
-                         companies: List[str], projects: List[str]) -> str:
+                         companies: List[str], projects: List[str], pods: List[str]) -> str:
         """Determine the intent of the search query"""
         
         # Person-finding patterns
@@ -269,6 +269,10 @@ class IntelligentMatchingService:
         location_patterns = [
             'in [location]', 'based in', 'located in', 'anyone in'
         ]
+
+        pod_patterns = [
+            'in', 'anyone in [pod]', 'in pod', 'pod of'
+        ]
         
         # Check for person-finding intent
         if any(pattern in query for pattern in person_patterns):
@@ -285,6 +289,9 @@ class IntelligentMatchingService:
         # Check for location-based intent
         if locations or any(pattern in query for pattern in location_patterns):
             return 'location_based'
+        
+        if any(pattern in query for pattern in pod_patterns):
+            return 'pod_based'
         
         # Check for skill-based intent
         if skills:
