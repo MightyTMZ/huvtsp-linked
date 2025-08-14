@@ -11,7 +11,7 @@ class IntelligentMatchingService:
     SKILL_CATEGORIES = {
         'design': [
             'graphic design', 'design', 'logo', 'branding', 'visual design', 'ui/ux', 
-            'social media graphics', 'marketing materials', 'brand identity'
+            'social media graphics', 'marketing materials', 'brand identity', 'graphic',
         ],
         'marketing': [
             'marketing', 'social media', 'content creation', 'brand strategy', 
@@ -41,24 +41,168 @@ class IntelligentMatchingService:
         ],
         'languages': [
             'foreign languages', 'networking', 'communication'
+        ],
+        'transferable': [
+            'critical', 'thinking', 'hustler', 'hacker', 'hipster', 
         ]
     }
     
     # Location patterns
     LOCATIONS = [
-        'boston', 'toronto', 'san francisco', 'new york', 'seattle', 'austin', 
-        'los angeles', 'chicago', 'denver', 'california', 'texas', 'massachusetts'
+        'boston', 
+        'toronto',
+        'canada', 
+        'san francisco', 
+        'bay area',
+        'new york', 
+        'new york city',
+        'nyc',
+        'seattle', 
+        'houston',
+        'austin', 
+        'ghana',
+        'africa',
+        'south america',
+        'north america',
+        'asia',
+        'australia',
+        'oceania',
+        'europe',
+        ''
+        'los angeles', 
+        'chicago', 
+        'denver', 
+        'california', 
+        'texas', 
+        'massachusetts',
+        'united states',
+        'usa',
+        'türkiye',
+        'turkiye',
+        'turkey',
+        'israel',
+        'south korea',
+        'korea',
+        'singapore',
+        'silicon valley',
+        'hong kong',
+        'dubai',
+        'finland',
+        'arizona',
+        'tucson',
+        'india',
+        'mumbai',
+        'lexington',
+        'kentucky',
+        'hollywood',
+        'california',
+        'dallas',
+        'brooklyn',
+        'los angeles',
+        'calgary',
+        'alberta',
+        'colorado',
+        'georgia',
+        'portland',
+        'united kingdom',
+        'qatar',
+        'philadelphia',
+        'honduras',
+        'florida',
+        'washington',
+        'poland',
+        'nepal',
+        'san jose',
+        'colombia',
+        'azerbaijan',
+        'maryland',
+        'ontario',
+        'instanbul',
+        'spain',
+        'chicago',
+        'illinois',
+        'france',
+        'nigeria',
+        'united arab emirates',
+        'uae',
+        'germany',
+        'bangladesh',
+        'pakistan',
+        'vancouver'
     ]
     
     # Company/Organization patterns
     COMPANIES = [
-        'rove', 'nyx ventures', 'touchpoint legal', 'stripe', 'zoom', 'google', 
-        'microsoft', 'reddit', 'nvidia', 'databricks', 
+        'amplify',
+        'amplify institute',
+        'internship',
+        'rove', 
+        'rove miles',
+        'nyx ventures', 
+        'touchpoint legal',
+        'touchpoint',
+        'touch point'
+        'docubridge',
+        'docu bridge',
+        'edubeyond',
+        'salespatriot',
+        'sales patriot',
+        'sale patriot',
+        'scout',
+        'scoutout',
+        'scout out',
+        'teachshare',
+        'teach share',
+        'exeter',
+        'exeter22',
+        'vanguard defense',
+        'vanguard',
+        'rayfield',
+        'rayfield systems',
+        'reachfaster ai',
+        'reachfaster',
+        'reach faster ai'
+        'reach faster',
     ]
     
     # Project/Startup patterns
     PROJECT_KEYWORDS = [
-        'startup', 'project', 'nonprofit', 'dashboard', 'platform', 'app', 'website'
+        'startup', 
+        'project', 
+        'nonprofit', 
+        'dashboard', 
+        'platform', 
+        'app', 
+        'website',
+        'proposal',
+    ]
+
+    POD_KEYWORDS = [
+        'pod',
+        'pod of',
+        'in the pod',
+        'reddit',
+        'spacex',
+        'canva',
+        'zoom',
+        'netflix',
+        'stripe',
+        'asana',
+        'airbnb',
+        'cloudflare',
+        'openai',
+        'snapchat',
+        'doordash',
+        'duolingo',
+        'uber',
+        'twilio',
+        'nvidia',
+        'zillow',
+        'square',
+        'okta',
+        'databricks',
+        'shopify',
+        'robinhood',
     ]
     
     def process_query(self, query: str) -> Dict[str, Any]:
@@ -81,9 +225,12 @@ class IntelligentMatchingService:
         
         # Extract project keywords
         found_projects = [proj for proj in self.PROJECT_KEYWORDS if proj in lower_query]
+
+        # Extract pod keywords
+        found_pods = [pod for pod in self.POD_KEYWORDS if pod in lower_query]
         
         # Determine intent
-        intent = self._determine_intent(lower_query, found_skills, found_locations, found_companies, found_projects)
+        intent = self._determine_intent(lower_query, found_skills, found_locations, found_companies, found_projects, found_pods)
         
         return {
             'original': query,
@@ -102,13 +249,15 @@ class IntelligentMatchingService:
         # Person-finding patterns
         person_patterns = [
             'who', 'anyone', 'people', 'person', 'someone', 'know anyone',
-            'find someone', 'looking for someone', 'need someone'
+            'find someone', 'looking for someone', 'need someone', 'partner',
+            'co-founder', 'cofounder', 'co founder', 'someone else', 'cracked',
+            'mate'
         ]
         
         # Project-finding patterns
         project_patterns = [
             'startup', 'project', 'nonprofit', 'looking to join', 'best startups',
-            'best nonprofits', 'interested in joining'
+            'best nonprofits', 'interested in joining', 'company', ''
         ]
         
         # Organization-finding patterns
