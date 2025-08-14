@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Search, Filter, TrendingUp, BarChart3, Home, Menu, X, Lightbulb } from "lucide-react";
+import { Search, Filter, TrendingUp, BarChart3, Home, Menu, X, Lightbulb, LocationEdit } from "lucide-react";
 import { useState } from "react";
 // import Feedback from "./Feedback";
 
@@ -22,6 +22,12 @@ export default function Navigation() {
       href: "/smart-search",
       icon: Search,
       description: "Natural language search",
+    },
+    {
+      name: "Location Search",
+      href: "/location-based-searching",
+      icon: LocationEdit,
+      description: "Find alumni based on their location",
     },
     {
       name: "Alumni Filter",
@@ -45,7 +51,7 @@ export default function Navigation() {
       name: "Startup Resources",
       href: "/startup-resources",
       icon: Lightbulb,
-      description: "Startup tools & resources",
+      description: "Startup tools & resources (Public)",
     },
     // {
     //   name: "Analytics",
