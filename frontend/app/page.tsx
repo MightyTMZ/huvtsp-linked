@@ -19,13 +19,13 @@ export default function Home() {
     <div className="min-h-screen relative overflow-hidden">
       {/* Full Screen Background Image */}
       <div className="absolute inset-0">
-        <Image
+        {/* <Image
           src="/tech.png"
           alt="HUVTSP Alumni Network Background"
           fill
           priority
           className="object-cover"
-        />
+        /> */}
         {/* Overlay for better text readability */}
         <div className="absolute inset-0 bg-black/30"></div>
       </div>
@@ -58,12 +58,15 @@ export default function Home() {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Hero Section */}
         <div className="text-center mb-16">
-          <div className="flex justify-center mb-8">
+          {/* <div className="flex justify-center mb-8">
             <img src="/tech.png" alt="HUVTSP Logo" />
-          </div>
+          </div> */}
           <h1 className="text-5xl font-bold text-white mb-4 bg-gradient-to-r from-blue-200 to-purple-200 bg-clip-text text-transparent drop-shadow-lg">
             Welcome to the HUVTSP Alumni Network
           </h1>
+          <p className="text-3xl text-green/90 max-w-3xl mx-auto leading-relaxed drop-shadow-md font-bold">
+            Unofficial, NOT affiliated, Student-led
+          </p>
           <p className="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed drop-shadow-md">
             Connect with your fellow HUVTSP 2025 alumni, discover opportunities,
             and build meaningful professional relationships.
@@ -171,7 +174,7 @@ export default function Home() {
         </div>
 
         {/* Quick Stats */}
-        <div className="bg-white/90 backdrop-blur-sm rounded-xl shadow-lg border border-white/20 p-8">
+        {/* <div className="bg-white/90 backdrop-blur-sm rounded-xl shadow-lg border border-white/20 p-8">
           <h2 className="text-2xl font-semibold text-gray-900 mb-6">
             Network Overview
           </h2>
@@ -201,7 +204,7 @@ export default function Home() {
               <div className="text-gray-600">Countries</div>
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* Call to Action */}
         <div className="mt-12 text-center">
