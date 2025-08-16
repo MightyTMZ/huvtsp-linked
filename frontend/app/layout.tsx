@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "HUVTSP 2025 Alumni Network",
+  title: "HUVTSP 2025 Alumni Network (Unofficial, NOT affiliated, student-led)",
   description:
     "Unofficial, NOT affiliated, student-led. Connect with HUVTSP alumni, find collaborators, and discover opportunities through intelligent semantic search.",
   // openGraph: {
