@@ -90,6 +90,9 @@ const PasswordProtection = ({ children }: PasswordProtectionProps) => {
             <h1 className="text-3xl font-bold text-gray-900 mb-3">
               Welcome to HUVTSP Alumni Network
             </h1>
+            <p className="text-2xl text-gray-600 max-w-2xl mx-auto font-bold mb-2">
+              Unofficial, NOT affiliated, Student-led
+            </p>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               Connect with your fellow HUVTSP 2025 alumni, discover exciting ventures, 
               and build meaningful professional relationships in our exclusive network.
